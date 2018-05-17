@@ -20,6 +20,7 @@ public class MainMenu implements Screen {
     private Texture menuBackground;
     private ShapeRenderer renderer;
     private Texture button;
+    private Texture word;
     private Vector2 pos;
 
     private GaryGame game;
@@ -42,6 +43,7 @@ public class MainMenu implements Screen {
         menuBackground = new Texture(Gdx.files.internal("assets/gary.png"));
         renderer = new ShapeRenderer();
         button = new Texture(Gdx.files.internal("assets/Button.png"));
+        word = new Texture(Gdx.files.internal("assets/play word.png"));
         pos = new Vector2(0,0);
     }
 
@@ -62,6 +64,7 @@ public class MainMenu implements Screen {
         batch.begin();
         //batch.draw(menuBackground,0,0,WORLD_WIDTH,WORLD_HEIGHT);
         batch.draw(button,1600,900,300,100);
+        batch.draw(word,1600,900,300,100);
         batch.draw(button,1600,650,300,100);
 
         font.draw(batch, "Welcome to Gary Come Home v0.1!", 100, 150);
