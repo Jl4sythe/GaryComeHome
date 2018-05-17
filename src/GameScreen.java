@@ -33,7 +33,7 @@ public abstract class GameScreen implements Screen
 
     public void resize(int width, int height)
     {
-
+        viewport.update(width, height);
     }
 
     public void pause()
@@ -48,6 +48,7 @@ public abstract class GameScreen implements Screen
 
     public void dispose()
     {
-
+        font.dispose();
+        batch.dispose();
     }
 }
