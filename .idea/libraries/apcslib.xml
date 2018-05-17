@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="apcslib">
     <CLASSES>
-      <root url="jar://E:/Comp Sci/apcslib.jar!/" />
-      <root url="jar://E:/Comp Sci/chnutil.jar!/" />
-      <root url="jar://E:/Comp Sci/gdx-backend-lwjgl-natives.jar!/" />
-      <root url="jar://E:/Comp Sci/gdx-backend-lwjgl.jar!/" />
-      <root url="jar://E:/Comp Sci/gdx-natives.jar!/" />
-      <root url="jar://E:/Comp Sci/gdx.jar!/" />
+      <root url="jar://E:/apcslib.jar!/" />
+      <root url="jar://E:/chnutil.jar!/" />
+      <root url="jar://E:/gdx-backend-lwjgl-natives.jar!/" />
+      <root url="jar://E:/gdx-backend-lwjgl.jar!/" />
+      <root url="jar://E:/gdx-natives.jar!/" />
+      <root url="jar://E:/gdx.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
