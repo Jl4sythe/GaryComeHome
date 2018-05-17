@@ -23,10 +23,10 @@ public class MainMenu implements Screen {
     private Vector2 pos;
 
     private GaryGame game;
-//this
+
     public static final float WORLD_WIDTH = 1920;
     public static float WORLD_HEIGHT = 1080;
-//super(this);
+
     public MainMenu(GaryGame game)
     {
         this.game = game;

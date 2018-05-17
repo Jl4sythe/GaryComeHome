@@ -21,6 +21,7 @@ public abstract class GameScreen implements Screen
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new FitViewport(WORLD_WIDTH, WORLD_HEIGHT, camera);
+        font = new BitmapFont();
         //renderer = new ShapeRenderer();
 
     }
