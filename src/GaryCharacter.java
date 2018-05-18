@@ -73,6 +73,7 @@ public class GaryCharacter {
 //        garySprL.setX(pos.x);
 //        garySprL.setY(pos.y);
 
+
         if(pos.y > 0){
             pos.y += (0.5)*(Constants.GRAVITY)*(1.0/300);
             velocity.y += Constants.GRAVITY * (1.0/60);
