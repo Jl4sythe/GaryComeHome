@@ -20,13 +20,11 @@ public class MainMenu implements Screen {
     private Texture menuBackground;
     private ShapeRenderer renderer;
     private Texture button;
-    private Texture word;
+    private Texture word; 
     private Vector2 pos;
 
     private GaryGame game;
 
-    public static final float WORLD_WIDTH = 1920;
-    public static float WORLD_HEIGHT = 1080;
 
     public MainMenu(GaryGame game)
     {
@@ -37,10 +35,10 @@ public class MainMenu implements Screen {
     public void show()
     {
         camera = new OrthographicCamera();
-        viewport = new FitViewport(WORLD_WIDTH,WORLD_HEIGHT,camera);
+        viewport = new FitViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT,camera);
         batch = new SpriteBatch();
         font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
-        menuBackground = new Texture(Gdx.files.internal("assets/gary.png"));
+        menuBackground = new Texture(Gdx.files.internal("assets/garyRight.png"));
         renderer = new ShapeRenderer();
         button = new Texture(Gdx.files.internal("assets/Button.png"));
         word = new Texture(Gdx.files.internal("assets/play word.png"));
@@ -62,10 +60,10 @@ public class MainMenu implements Screen {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        //batch.draw(menuBackground,0,0,WORLD_WIDTH,WORLD_HEIGHT);
-        batch.draw(button,1600,900,300,100);
-        batch.draw(word,1600,900,300,100);
-        batch.draw(button,1600,650,300,100);
+        //batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+        batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
+        batch.draw(word,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
+        batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
 
         font.draw(batch, "Welcome to Gary Come Home v0.1!", 100, 150);
         font.draw(batch, "Click the buttons to begin", 100, 100);
@@ -73,17 +71,17 @@ public class MainMenu implements Screen {
 
         batch.end();
 
-//        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-//        {
-//            int x = Gdx.input.getX();
-//            int y = Gdx.input.getY();
-//
-//            pos = viewport.unproject(new Vector2(x,y));
-//            if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 900 && pos.y <= 1000)
-//                game.setScreen(new GameScreen());
-//            if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 650 && pos.y <= 750)
-//                game.setScreen(new GameScreen());
-//        }
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+        {
+            int x = Gdx.input.getX();
+            int y = Gdx.input.getY();
+
+            pos = viewport.unproject(new Vector2(x,y));
+            if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 900 && pos.y <= 1000)
+                game.setScreen(new GameScreen());
+            if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 650 && pos.y <= 750)
+                dispose();
+        }
 
 
 
