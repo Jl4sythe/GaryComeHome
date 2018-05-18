@@ -9,8 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 public class GaryCharacter {
     private Vector2 pos;
     private Vector2 velocity;
-    private Texture garyTexR;
-//    private Texture garyTexL;
     private Sprite garySprR;
 //    private Sprite garySprL;
 
@@ -19,8 +17,8 @@ public class GaryCharacter {
     public GaryCharacter() {
         this.pos = new Vector2(0,0);
         this.velocity = new Vector2(0,0);
-        this.garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
-//        this.garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
+        Texture garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
+//        Texture garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
         this.garySprR = new Sprite(garyTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
 //        this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
 
