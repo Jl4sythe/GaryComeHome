@@ -14,6 +14,7 @@ public class GaryCharacter {
     private ShapeRenderer renderer;
     private boolean facingRight;
     private int health;
+    private Texture shell;
 
     public GaryCharacter() {
         facingRight = true;
@@ -28,6 +29,7 @@ public class GaryCharacter {
         renderer = new ShapeRenderer();
 
         health = 3;
+        shell = new Texture(Gdx.files.internal("assets/garyRight.png"));
     }
 
     public Vector2 getPos() {
@@ -48,7 +50,7 @@ public class GaryCharacter {
 
     public void update(SpriteBatch batch){
 
-        checkHealth();
+        checkHealth(health);
         updateHealth();
 
         if(facingRight)
