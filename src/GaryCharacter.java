@@ -11,9 +11,12 @@ public class GaryCharacter {
     private Vector2 velocity;
     private Sprite garySprR;
     private Sprite garySprL;
+    private Sprite patrickR;
+    private Sprite patrickL;
+
     private ShapeRenderer renderer;
+
     private boolean facingRight;
-    private int health;
 
     public GaryCharacter() {
         facingRight = true;
@@ -25,9 +28,12 @@ public class GaryCharacter {
         this.garySprR = new Sprite(garyTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
         this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
 
-        renderer = new ShapeRenderer();
+        Texture patTexR = new Texture(Gdx.files.internal("assets/Patrick.png"));
+        Texture patTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
+        this.patrickR = new Sprite(patTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
+        this.patrickL = new Sprite(patTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
 
-        health = 3;
+        renderer = new ShapeRenderer();
     }
 
     public Vector2 getPos() {
@@ -47,15 +53,18 @@ public class GaryCharacter {
     }
 
     public void update(SpriteBatch batch){
-
-        checkHealth();
-        updateHealth();
-
-        if(facingRight)
-            garySprR.draw(batch);
-        else if(!facingRight)
-            garySprL.draw(batch);
-
+        if(facingRight) {
+            if(Gdx.input.isKeyPressed(Input.Keys.P))
+                patrickR.draw(batch);
+            else
+                garySprR.draw(batch);
+        }
+        else if(!facingRight) {
+            if(Gdx.input.isKeyPressed(Input.Keys.P))
+                patrickL.draw(batch);
+            else
+                garySprL.draw(batch);
+        }
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             velocity.x = -Constants.GARY_SPEED;
@@ -85,6 +94,10 @@ public class GaryCharacter {
         garySprR.setY(pos.y);
         garySprL.setX(pos.x);
         garySprL.setY(pos.y);
+        patrickL.setX(pos.x);
+        patrickL.setY(pos.y);
+        patrickR.setX(pos.x);
+        patrickR.setY(pos.y);
 
 
         if(pos.y > 0){
@@ -95,33 +108,6 @@ public class GaryCharacter {
             velocity.y = 0;
 
 
-
-
-    }
-
-    public void checkHealth(int health)
-    {
-
-    }
-
-    public void updateHealth()
-    {
-        if(health == 3)
-        {
-
-        }
-        else if(health == 2)
-        {
-
-        }
-        else if(health == 1)
-        {
-
-        }
-        else if(health == 0)
-        {
-
-        }
     }
 
     public void dispose(){
