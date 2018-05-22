@@ -10,17 +10,21 @@ public class GaryCharacter {
     private Vector2 pos;
     private Vector2 velocity;
     private Sprite garySprR;
-//    private Sprite garySprL;
+    private Sprite garySprL;
 
     private ShapeRenderer renderer;
 
+    private boolean facingRight;
+
     public GaryCharacter() {
+        facingRight = true;
+
         this.pos = new Vector2(0,0);
         this.velocity = new Vector2(0,0);
         Texture garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
-//        Texture garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
+        Texture garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
         this.garySprR = new Sprite(garyTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
-//        this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
+        this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
 
         renderer = new ShapeRenderer();
     }
@@ -42,13 +46,18 @@ public class GaryCharacter {
     }
 
     public void update(SpriteBatch batch){
+        if(facingRight)
             garySprR.draw(batch);
+        else if(!facingRight)
+            garySprL.draw(batch);
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             velocity.x = -Constants.GARY_SPEED;
+            facingRight = false;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.D)){
             velocity.x = Constants.GARY_SPEED;
+            facingRight = true;
         }
         else
             velocity.x = 0;
@@ -68,8 +77,8 @@ public class GaryCharacter {
 
         garySprR.setX(pos.x);
         garySprR.setY(pos.y);
-//        garySprL.setX(pos.x);
-//        garySprL.setY(pos.y);
+        garySprL.setX(pos.x);
+        garySprL.setY(pos.y);
 
 
         if(pos.y > 0){
