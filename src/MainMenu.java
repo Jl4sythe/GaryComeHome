@@ -79,9 +79,9 @@ public class MainMenu implements Screen {
             int y = Gdx.input.getY();
 
             pos = viewport.unproject(new Vector2(x,y));
-            if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 900 && pos.y <= 1000)
+            if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 180 && pos.y <= Constants.WORLD_HEIGHT - 80)
                 game.setScreen(new GameScreen(game));
-            if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 650 && pos.y <= 750)
+            if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 430 && pos.y <= Constants.WORLD_HEIGHT - 330)
                 dispose();
         }
     }

@@ -20,7 +20,7 @@ public class GaryCharacter {
     public GaryCharacter(GaryGame game) {
         facingRight = true;
 
-        game = new GaryGame();
+        this.game = game;
 
         this.pos = new Vector2(0,0);
         this.velocity = new Vector2(0,0);
@@ -28,6 +28,7 @@ public class GaryCharacter {
         Texture garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
         this.garySprR = new Sprite(garyTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
         this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
+
 
         renderer = new ShapeRenderer();
 
