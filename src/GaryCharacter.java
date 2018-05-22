@@ -115,18 +115,18 @@ public class GaryCharacter {
 
         if(health == 3)
         {
-            batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
-            batch.draw(shell, 90,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
-            batch.draw(shell, 150,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 30,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 90,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 150,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 2)
         {
-            batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
-            batch.draw(shell, 90,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 30,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 90,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 1)
         {
-            batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 30,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 0)
         {
