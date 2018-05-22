@@ -1,5 +1,6 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,6 +17,8 @@ public class GameScreen implements Screen
     private ShapeRenderer renderer;
     private Viewport viewport;
 
+    private Music song;
+
     private GaryCharacter gary;
 
 
@@ -29,6 +32,10 @@ public class GameScreen implements Screen
         renderer = new ShapeRenderer();
 
         gary = new GaryCharacter();
+
+        song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
+        song.setLooping(true);
+        song.play();
 
     }
 
