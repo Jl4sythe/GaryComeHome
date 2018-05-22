@@ -42,6 +42,7 @@ public class MainMenu implements Screen {
         renderer = new ShapeRenderer();
         button = new Texture(Gdx.files.internal("assets/Button.png"));
         word = new Texture(Gdx.files.internal("assets/play word.png"));
+        menuBackground = new Texture(Gdx.files.internal("assets/menuBackground.jpg"));
         pos = new Vector2(0,0);
     }
 
@@ -60,10 +61,11 @@ public class MainMenu implements Screen {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        //batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+        batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
         batch.draw(word,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
+
 
         font.draw(batch, "Welcome to Gary Come Home v0.1!", 100, 150);
         font.draw(batch, "Click the buttons to begin", 100, 100);
@@ -82,14 +84,6 @@ public class MainMenu implements Screen {
             if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 650 && pos.y <= 750)
                 dispose();
         }
-
-
-
-
-//        if(Gdx.input.justTouched())
-//        {
-//            game.setScreen(new GameScreen());
-//        }
     }
 
     @Override
@@ -117,6 +111,7 @@ public class MainMenu implements Screen {
         renderer.dispose();
         batch.dispose();
         font.dispose();
+
     }
 }
 

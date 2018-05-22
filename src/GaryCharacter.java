@@ -53,7 +53,7 @@ public class GaryCharacter {
 
     public void update(SpriteBatch batch){
 
-        checkHealth(health);
+        checkHealth();
         updateHealth(batch);
 
         if(facingRight)
@@ -104,13 +104,15 @@ public class GaryCharacter {
 
     }
 
-    public void checkHealth(int health)
+    public void checkHealth()
     {
-
+        if(Gdx.input.isKeyJustPressed(Input.Keys.H))
+            health--;
     }
 
     public void updateHealth(SpriteBatch batch)
     {
+
         if(health == 3)
         {
             batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
@@ -129,6 +131,7 @@ public class GaryCharacter {
         else if(health == 0)
         {
             game.setScreen(new GameOverScreen());
+
         }
     }
 
