@@ -11,10 +11,9 @@ public class GaryCharacter {
     private Vector2 velocity;
     private Sprite garySprR;
     private Sprite garySprL;
-
     private ShapeRenderer renderer;
-
     private boolean facingRight;
+    private int health;
 
     public GaryCharacter() {
         facingRight = true;
@@ -27,6 +26,8 @@ public class GaryCharacter {
         this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
 
         renderer = new ShapeRenderer();
+
+        health = 3;
     }
 
     public Vector2 getPos() {
@@ -46,10 +47,15 @@ public class GaryCharacter {
     }
 
     public void update(SpriteBatch batch){
+
+        checkHealth();
+        updateHealth();
+
         if(facingRight)
             garySprR.draw(batch);
         else if(!facingRight)
             garySprL.draw(batch);
+
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             velocity.x = -Constants.GARY_SPEED;
@@ -89,6 +95,33 @@ public class GaryCharacter {
             velocity.y = 0;
 
 
+
+
+    }
+
+    public void checkHealth(int health)
+    {
+
+    }
+
+    public void updateHealth()
+    {
+        if(health == 3)
+        {
+
+        }
+        else if(health == 2)
+        {
+
+        }
+        else if(health == 1)
+        {
+
+        }
+        else if(health == 0)
+        {
+
+        }
     }
 
     public void dispose(){
