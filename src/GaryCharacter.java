@@ -130,7 +130,7 @@ public class GaryCharacter {
         }
         else if(health == 0)
         {
-            game.setScreen(new GameOverScreen());
+            game.setScreen(new GameOverScreen(game));
 
         }
     }
