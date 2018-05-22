@@ -22,7 +22,7 @@ public class GameOverScreen implements Screen{
         viewport = new FitViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT,camera);
         batch = new SpriteBatch();
         font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
-        //background = new Texture(Gdx.files.internal("assets/"));
+        background = new Texture(Gdx.files.internal("assets/GameOverBackground.jpg"));
 
         this.game = game;
     }
@@ -39,7 +39,7 @@ public class GameOverScreen implements Screen{
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+        batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
 
         batch.end();
     }
