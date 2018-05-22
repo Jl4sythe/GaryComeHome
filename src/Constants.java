@@ -8,4 +8,5 @@ public class Constants {
     public final static int GARY_WIDTH = 266;
     public final static int GARY_HEIGHT = 224;
     public final static float FLOOR = 100;
+    public final static int SHELL_SIZE = 50;
 }

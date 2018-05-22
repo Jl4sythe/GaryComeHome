@@ -15,9 +15,12 @@ public class GaryCharacter {
     private boolean facingRight;
     private int health;
     private Texture shell;
+    private GaryGame game;
 
-    public GaryCharacter() {
+    public GaryCharacter(GaryGame game) {
         facingRight = true;
+
+        game = new GaryGame();
 
         this.pos = new Vector2(0,0);
         this.velocity = new Vector2(0,0);
@@ -51,7 +54,7 @@ public class GaryCharacter {
     public void update(SpriteBatch batch){
 
         checkHealth(health);
-        updateHealth();
+        updateHealth(batch);
 
         if(facingRight)
             garySprR.draw(batch);
@@ -106,23 +109,26 @@ public class GaryCharacter {
 
     }
 
-    public void updateHealth()
+    public void updateHealth(SpriteBatch batch)
     {
         if(health == 3)
         {
-
+            batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 90,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 150,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 2)
         {
-
+            batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 90,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 1)
         {
-
+            batch.draw(shell, 30,1030,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 0)
         {
-
+            game.setScreen(new GameOverScreen());
         }
     }
 
