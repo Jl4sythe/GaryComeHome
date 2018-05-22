@@ -78,7 +78,7 @@ public class MainMenu implements Screen {
 
             pos = viewport.unproject(new Vector2(x,y));
             if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 900 && pos.y <= 1000)
-                game.setScreen(new GameScreen());
+                game.setScreen(new GameScreen(game));
             if(pos.x >= 1600 && pos.x < 1900 && pos.y >= 650 && pos.y <= 750)
                 dispose();
         }

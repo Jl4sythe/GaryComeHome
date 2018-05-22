@@ -21,7 +21,11 @@ public class GameScreen implements Screen
 
     private GaryCharacter gary;
 
+    private GaryGame game;
 
+    public GameScreen(GaryGame game) {
+        this.game = game;
+    }
 
     public void show()
     {
@@ -31,7 +35,7 @@ public class GameScreen implements Screen
         font = new BitmapFont();
         renderer = new ShapeRenderer();
 
-        gary = new GaryCharacter();
+        gary = new GaryCharacter(game);
 
         song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
         song.setLooping(true);
