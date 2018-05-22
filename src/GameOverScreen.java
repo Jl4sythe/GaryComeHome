@@ -1,6 +1,11 @@
 import com.badlogic.gdx.Screen;
 
 public class GameOverScreen implements Screen{
+
+    public GameOverScreen(){
+
+    }
+
     @Override
     public void show() {
 
