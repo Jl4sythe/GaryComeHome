@@ -8,8 +8,8 @@ public class GameLauncher
         GaryGame myProgram = new GaryGame();
 
         LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-        config.width = 1920;
-        config.height = 1080;
+        config.width = (int)Constants.WORLD_WIDTH;
+        config.height = (int)Constants.WORLD_HEIGHT;
         //keep ratio to world units
         LwjglApplication launcher = new LwjglApplication(myProgram, config);
     }
