@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 public class GaryCharacter {
     private Vector2 velocity;
     private ShapeRenderer renderer;
-    private boolean facingRight;
+    static boolean facingRight;
     private int health;
     private Texture shell;
     private GaryGame game;
@@ -131,8 +131,6 @@ public class GaryCharacter {
     }
 
     public void  shoot(){
-
-
 
     }
 
