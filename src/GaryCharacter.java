@@ -62,6 +62,8 @@ public class GaryCharacter {
         else if(!facingRight)
             garySprL.draw(batch);
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+            shoot();
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             velocity.x = -Constants.GARY_SPEED;
@@ -74,7 +76,7 @@ public class GaryCharacter {
         else
             velocity.x = 0;
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && velocity.y == 0){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
             velocity.y = Constants.GARY_SPEED * 1.5f;
         }
 
@@ -94,7 +96,7 @@ public class GaryCharacter {
 
 
         if(pos.y > 0){
-            pos.y += (0.5)*(Constants.GRAVITY)*(1.0/300);
+            pos.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
             velocity.y += Constants.GRAVITY * (1.0/60);
         }
         else
@@ -116,9 +118,9 @@ public class GaryCharacter {
 
         if(health == 3)
         {
-            batch.draw(shell, 30,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
-            batch.draw(shell, 90,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
-            batch.draw(shell, 150,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 10,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 70,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 130,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 2)
         {
@@ -134,6 +136,12 @@ public class GaryCharacter {
             game.setScreen(new GameOverScreen(game));
 
         }
+    }
+
+    public void  shoot(){
+
+
+
     }
 
     public void dispose(){
