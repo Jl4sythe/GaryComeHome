@@ -8,10 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class EnemyCharacter {
-    private Vector2 pos;
     private Vector2 velocity;
-    private Sprite garySprR;
-    private Sprite garySprL;
     private ShapeRenderer renderer;
     private boolean facingRight;
     private int health;
@@ -27,15 +24,9 @@ public class EnemyCharacter {
 
         this.game = game;
 
-        this.pos = new Vector2(0,0); //Constants.WORLD_WIDTH - Constants.GARY_WIDTH
         this.velocity = new Vector2(0,0);
         garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
         garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
-
-//        this.garySprR = new Sprite(garyTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
-//        this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
-//        garySprR.setX(Constants.WORLD_WIDTH - Constants.GARY_WIDTH);
-//        garySprL.setX(Constants.WORLD_WIDTH - Constants.GARY_WIDTH);
 
         enemy = new Rectangle();
         enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
@@ -48,22 +39,6 @@ public class EnemyCharacter {
         health = 3;
         shell = new Texture(Gdx.files.internal("assets/garyLeft.png"));
 
-    }
-
-    public Vector2 getPos() {
-        return pos;
-    }
-
-    public void setPos(Vector2 pos) {
-        this.pos = pos;
-    }
-
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
     }
 
     public void update(SpriteBatch batch){
@@ -102,14 +77,9 @@ public class EnemyCharacter {
         enemy.x += velocity.x * (1.0/60);
         enemy.y += velocity.y * (1.0/60);
 
-//        garySprR.setX(pos.x);
-//        garySprR.setY(pos.y);
-//        garySprL.setX(pos.x);
-//        garySprL.setY(pos.y);
-
 
         if(enemy.y > 0){
-            enemy.y += (0.5)*(Constants.GRAVITY)*(1.0/300);
+            enemy.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
             velocity.y += Constants.GRAVITY * (1.0/60);
         }
         else

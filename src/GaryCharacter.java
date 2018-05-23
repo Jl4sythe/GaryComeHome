@@ -4,31 +4,35 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class GaryCharacter {
-    private Vector2 pos;
     private Vector2 velocity;
-    private Sprite garySprR;
-    private Sprite garySprL;
     private ShapeRenderer renderer;
     private boolean facingRight;
     private int health;
     private Texture shell;
     private GaryGame game;
+    
+    private Texture garyTexR;
+    private Texture garyTexL;
+    private Rectangle gary;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
 
         this.game = game;
 
-        this.pos = new Vector2(0,0);
         this.velocity = new Vector2(0,0);
-        Texture garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
-        Texture garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
-        this.garySprR = new Sprite(garyTexR, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);//add width and height later
-        this.garySprL = new Sprite(garyTexL, (int)pos.x, (int)pos.y, Constants.GARY_WIDTH, Constants.GARY_HEIGHT);
+        garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
+        garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
 
+        gary = new Rectangle();
+        gary.x = 0;
+        gary.y = 0;
+        gary.width = Constants.GARY_WIDTH;
+        gary.height = Constants.GARY_HEIGHT;
 
         renderer = new ShapeRenderer();
 
@@ -36,13 +40,6 @@ public class GaryCharacter {
         shell = new Texture(Gdx.files.internal("assets/garyRight.png"));
     }
 
-    public Vector2 getPos() {
-        return pos;
-    }
-
-    public void setPos(Vector2 pos) {
-        this.pos = pos;
-    }
 
     public Vector2 getVelocity() {
         return velocity;
@@ -58,9 +55,9 @@ public class GaryCharacter {
         updateHealth(batch);
 
         if(facingRight)
-            garySprR.draw(batch);
+            batch.draw(garyTexR, gary.x, gary.y, gary.width, gary.height);
         else if(!facingRight)
-            garySprL.draw(batch);
+            batch.draw(garyTexL, gary.x, gary.y, gary.width, gary.height);
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
             shoot();
@@ -80,23 +77,18 @@ public class GaryCharacter {
             velocity.y = Constants.GARY_SPEED * 1.5f;
         }
 
-        if(pos.x < 0)
+        if(gary.x < 0)
             velocity.x = 200;
-        else if(pos.x + Constants.GARY_WIDTH > Constants.WORLD_WIDTH)
+        else if(gary.x + Constants.GARY_WIDTH > Constants.WORLD_WIDTH)
             velocity.x = -200;
 
 
-        pos.x += velocity.x * (1.0/60);
-        pos.y += velocity.y * (1.0/60);
-
-        garySprR.setX(pos.x);
-        garySprR.setY(pos.y);
-        garySprL.setX(pos.x);
-        garySprL.setY(pos.y);
+        gary.x += velocity.x * (1.0/60);
+        gary.y += velocity.y * (1.0/60);
 
 
-        if(pos.y > 0){
-            pos.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
+        if(gary.y > 0){
+            gary.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
             velocity.y += Constants.GRAVITY * (1.0/60);
         }
         else
@@ -124,12 +116,12 @@ public class GaryCharacter {
         }
         else if(health == 2)
         {
-            batch.draw(shell, 30,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
-            batch.draw(shell, 90,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 10,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 70,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 1)
         {
-            batch.draw(shell, 30,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
+            batch.draw(shell, 10,Constants.WORLD_HEIGHT-Constants.SHELL_SIZE,Constants.SHELL_SIZE,Constants.SHELL_SIZE);
         }
         else if(health == 0)
         {

@@ -3,6 +3,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -16,6 +17,7 @@ public class GameScreen implements Screen
     private BitmapFont font;
     private ShapeRenderer renderer;
     private Viewport viewport;
+    private Texture gameBackground;
 
     private Music song;
 
@@ -43,6 +45,8 @@ public class GameScreen implements Screen
         song.setLooping(true);
         song.play();
 
+        gameBackground = new Texture(Gdx.files.internal("assets/gameBackground.jpg"));
+
     }
 
     public void render(float delta)
@@ -52,6 +56,7 @@ public class GameScreen implements Screen
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+        batch.draw(gameBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         gary.update(batch);
         enemy.update(batch);
         batch.end();
@@ -80,6 +85,6 @@ public class GameScreen implements Screen
     {
         font.dispose();
         batch.dispose();
-        gary.dispose();
+
     }
 }
