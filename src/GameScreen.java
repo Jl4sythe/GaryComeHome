@@ -20,6 +20,7 @@ public class GameScreen implements Screen
     private Music song;
 
     private GaryCharacter gary;
+    private EnemyCharacter enemy;
 
     private GaryGame game;
 
@@ -36,6 +37,7 @@ public class GameScreen implements Screen
         renderer = new ShapeRenderer();
 
         gary = new GaryCharacter(game);
+        enemy = new EnemyCharacter(game);
 
         song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
         song.setLooping(true);
@@ -51,6 +53,7 @@ public class GameScreen implements Screen
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         gary.update(batch);
+        enemy.update(batch);
         batch.end();
     }
 
