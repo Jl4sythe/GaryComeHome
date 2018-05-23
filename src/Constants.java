@@ -9,5 +9,5 @@ public class Constants {
     public final static int GARY_HEIGHT = 56;
     public final static float FLOOR = 100;
     public final static int SHELL_SIZE = 50;
-    public final static float LAZER_SPEED = 350f;
+    public final static float LASER_SPEED = 350f;
 }

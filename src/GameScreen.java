@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.ArrayList;
+
 public class GameScreen implements Screen
 {
     private OrthographicCamera camera;
@@ -21,6 +23,7 @@ public class GameScreen implements Screen
 
     private GaryCharacter gary;
     private EnemyCharacter enemy;
+    public ArrayList<Laser> lasers;
 
     private GaryGame game;
 
@@ -38,6 +41,7 @@ public class GameScreen implements Screen
 
         gary = new GaryCharacter(game);
         enemy = new EnemyCharacter(game);
+        lasers = new ArrayList<Laser>();
 
         song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
         song.setLooping(true);
@@ -54,7 +58,12 @@ public class GameScreen implements Screen
         batch.begin();
         gary.update(batch);
         enemy.update(batch);
+        updateLasers();
         batch.end();
+    }
+
+    public void updateLasers(){
+
     }
 
     public void resize(int width, int height)

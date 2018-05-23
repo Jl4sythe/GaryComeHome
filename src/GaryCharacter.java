@@ -12,7 +12,7 @@ public class GaryCharacter {
     private Sprite garySprR;
     private Sprite garySprL;
     private ShapeRenderer renderer;
-    private boolean facingRight;
+    static boolean facingRight;
     private int health;
     private Texture shell;
     private GaryGame game;
@@ -139,8 +139,6 @@ public class GaryCharacter {
     }
 
     public void  shoot(){
-
-
 
     }
 

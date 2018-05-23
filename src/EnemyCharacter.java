@@ -109,7 +109,7 @@ public class EnemyCharacter {
 
 
         if(enemy.y > 0){
-            enemy.y += (0.5)*(Constants.GRAVITY)*(1.0/300);
+            enemy.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
             velocity.y += Constants.GRAVITY * (1.0/60);
         }
         else
