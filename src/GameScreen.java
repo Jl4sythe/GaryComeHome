@@ -26,7 +26,7 @@ public class GameScreen implements Screen
 
     private GaryCharacter gary;
     private EnemyCharacter enemy;
-    public ArrayList<Laser> lasers;
+    public static ArrayList<Laser> lasers;
 
     private GaryGame game;
 
@@ -75,7 +75,9 @@ public class GameScreen implements Screen
     }
 
     public void updateLasers(){
-
+        for(Laser l: lasers){
+            l.update();
+        }
     }
 
     public void resize(int width, int height)

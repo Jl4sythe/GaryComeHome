@@ -9,9 +9,9 @@ public class Laser {
     private SpriteBatch batch;
     private Texture laserTex;
 
-    public Laser(boolean facingRight, float x, float y, float width, float height, SpriteBatch batch){
+    public Laser(boolean facingRight, float x, float y, SpriteBatch batch){
         this.facingRight = facingRight;
-        rectangle = new Rectangle(x, y, width, height);
+        rectangle = new Rectangle(x, y, 14, 4);
         this.batch = batch;
         laserTex = new Texture(Gdx.files.internal("assets/Laser.png"));
     }
@@ -21,5 +21,11 @@ public class Laser {
         batch.draw(laserTex, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         if(facingRight)
             rectangle.x += Constants.LASER_SPEED * (1/60.0);
+        else
+            rectangle.x -= Constants.LASER_SPEED * (1/60.0);
+    }
+
+    public Rectangle getRectangle() {
+        return rectangle;
     }
 }
