@@ -20,6 +20,7 @@ public class EnemyCharacter {
     private Rectangle enemy;
 
     private int coolDown = 0;
+    private float time = 0;
 
     public EnemyCharacter(GaryGame game) {
         facingRight = false;
@@ -158,5 +159,20 @@ public class EnemyCharacter {
         renderer.dispose();
     }
 
+    public void updatePower(float delta) {
+        if (PowerUps.enemyCtr == 1) {
+            Constants.ENEMY_JUMP_SPEED = Constants.CHANGED_SPEED;
+        }
+        time += delta;
+        if (time > Constants.POWER_TIME)
+        {
+            if(PowerUps.enemyCtr == 1)
+            {
+                Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_SPEED;
+            }
+            time = 0;
+            PowerUps.enemyCtr = 0;
+        }
 
+    }
 }

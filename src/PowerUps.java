@@ -39,10 +39,12 @@ public class PowerUps
             if(filler.overlaps(gary))
             {
                 garyCtr++;
+                powers.removeIndex(i);
             }
             else if(filler.overlaps(enemy))
             {
                 enemyCtr++;
+                powers.removeIndex(i);
             }
 
             if(filler.y + Constants.POWER_SIZE < 0)

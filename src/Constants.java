@@ -5,8 +5,10 @@ public class Constants {
     public final static float WORLD_HEIGHT = 540f;
 
     public final static float GRAVITY = -600f;
-    public final static float GARY_JUMP_SPEED = 500;
-    public final static float ENEMY_JUMP_SPEED = 500;
+    public static float GARY_JUMP_SPEED = 500;
+    public static float ENEMY_JUMP_SPEED = 500;
+    public final static float CHANGED_SPEED = 700;
+    public final static float ORIGINAL_SPEED = 500;
 
     public final static float GARY_SPEED = 266.5f;
 
@@ -21,5 +23,7 @@ public class Constants {
 
     public final static float POWER_SIZE = 50f;
     public final static float POWER_SPEED = 1f;
+    public final static float POWER_TIME = 15f;
     public final static float SPAWN_SPEED = (float)(Math.random()*10+15);
+
 }

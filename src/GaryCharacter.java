@@ -20,6 +20,7 @@ public class GaryCharacter {
     private Rectangle gary;
 
     private int coolDown = 0;
+    private float time = 0;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
@@ -153,12 +154,21 @@ public class GaryCharacter {
         renderer.dispose();
     }
 
-    public void updatePower()
-    {
-        if(PowerUps.garyCtr == 1)
-        {
-
+    public void updatePower(float delta) {
+        if (PowerUps.garyCtr == 1) {
+            Constants.GARY_JUMP_SPEED = Constants.CHANGED_SPEED;
         }
+        time += delta;
+        if (time > Constants.POWER_TIME)
+        {
+            if(PowerUps.garyCtr == 1)
+            {
+                Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_SPEED;
+            }
+            time = 0;
+            PowerUps.garyCtr = 0;
+        }
+
     }
 
 
