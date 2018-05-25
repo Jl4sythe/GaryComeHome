@@ -71,7 +71,7 @@ public class GaryCharacter {
             velocity.x = 0;
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
-            velocity.y = Constants.JUMP_SPEED;
+            velocity.y = Constants.GARY_JUMP_SPEED;
         }
 
         if(gary.x < 0)
