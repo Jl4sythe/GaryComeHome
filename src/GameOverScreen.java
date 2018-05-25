@@ -1,4 +1,5 @@
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -6,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,6 +18,8 @@ public class GameOverScreen implements Screen{
     private BitmapFont font;
     private Texture background;
     private Texture button;
+
+    private Vector2 pos;
 
     private boolean garyWinner;
 
@@ -31,6 +35,7 @@ public class GameOverScreen implements Screen{
         background = new Texture(Gdx.files.internal("assets/GameOverBackground.jpg"));
         this.garyWinner = garyWinner;
         this.game = game;
+        pos = new Vector2(0,0);
     }
 
     @Override
@@ -61,6 +66,17 @@ public class GameOverScreen implements Screen{
         //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
 
         batch.end();
+
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+            int x = Gdx.input.getX();
+            int y = Gdx.input.getY();
+
+            pos = viewport.unproject(new Vector2(x,y));
+            if(pos.x >= Constants.WORLD_WIDTH/2 - 400 && pos.x < Constants.WORLD_WIDTH/2 - 100 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
+                dispose();
+            if(pos.x >= Constants.WORLD_WIDTH/2 + 100 && pos.x < Constants.WORLD_WIDTH/2 + 200 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
+                game.setScreen(new GameScreen(game));
+        }
     }
 
     @Override

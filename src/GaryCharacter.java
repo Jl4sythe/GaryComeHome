@@ -141,11 +141,11 @@ public class GaryCharacter {
         if(coolDown == 0) {
             if (facingRight) {
                 GameScreen.lasers.add(new Laser(facingRight, gary.x + gary.width + 1, gary.y + gary.height - 15, batch));
-                coolDown = 1 * 60;
+                coolDown = 60;
             }
             else {
                 GameScreen.lasers.add(new Laser(facingRight, gary.x - Constants.LASER_WIDTH, gary.y + gary.height - 15, batch));
-                coolDown = 1 * 60;
+                coolDown = 60;
             }
         }
     }
