@@ -19,6 +19,8 @@ public class GaryCharacter {
     private Texture garyTexL;
     private Rectangle gary;
 
+    private int coolDown = 0;
+
     public GaryCharacter(GaryGame game) {
         facingRight = true;
 
@@ -60,7 +62,7 @@ public class GaryCharacter {
             batch.draw(garyTexL, gary.x, gary.y, gary.width, gary.height);
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-            shoot();
+            shoot(batch);
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             velocity.x = -Constants.GARY_SPEED;
@@ -94,7 +96,9 @@ public class GaryCharacter {
         else
             velocity.y = 0;
 
-
+        if(coolDown > 0){
+            coolDown--;
+        }
 
 
     }
@@ -103,6 +107,13 @@ public class GaryCharacter {
     {
         if(Gdx.input.isKeyJustPressed(Input.Keys.H))
             health--;
+        for(int i = 0; i < GameScreen.lasers.size(); i++){
+            if(gary.overlaps(GameScreen.lasers.get(i).getRectangle())) {
+                health--;
+                GameScreen.lasers.remove(i);
+                i--;
+            }
+        }
     }
 
     public void updateHealth(SpriteBatch batch)
@@ -130,8 +141,17 @@ public class GaryCharacter {
         }
     }
 
-    public void  shoot(){
-
+    public void  shoot(SpriteBatch batch){
+        if(coolDown == 0) {
+            if (facingRight) {
+                GameScreen.lasers.add(new Laser(facingRight, gary.x + gary.width + 1, gary.y + gary.height - 15, batch));
+                coolDown = 1 * 60;
+            }
+            else {
+                GameScreen.lasers.add(new Laser(facingRight, gary.x - Constants.LASER_WIDTH, gary.y + gary.height - 15, batch));
+                coolDown = 1 * 60;
+            }
+        }
     }
 
     public void dispose(){

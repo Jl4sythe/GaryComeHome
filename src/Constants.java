@@ -10,6 +10,8 @@ public class Constants {
     public final static float FLOOR = 100;
     public final static int SHELL_SIZE = 50;
     public final static float LASER_SPEED = 350f;
+    public final static float LASER_WIDTH = 14f;
+    public final static float LASER_HEIGHT = 4f;
     public final static float POWER_SIZE = 50f;
     public final static float POWER_SPEED = 3f;
 }
