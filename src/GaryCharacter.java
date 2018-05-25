@@ -42,6 +42,11 @@ public class GaryCharacter {
         shell = new Texture(Gdx.files.internal("assets/garyRight.png"));
     }
 
+    public Rectangle getRectangle()
+    {
+        return gary;
+    }
+
 
 
     public void update(SpriteBatch batch){
@@ -149,6 +154,14 @@ public class GaryCharacter {
 
     public void dispose(){
         renderer.dispose();
+    }
+
+    public void updatePower()
+    {
+        if(PowerUps.garyCtr == 1)
+        {
+
+        }
     }
 
 
