@@ -42,7 +42,9 @@ public class GaryCharacter {
         shell = new Texture(Gdx.files.internal("assets/garyRight.png"));
     }
 
-
+    public Rectangle getRectangle(){
+        return gary;
+    }
 
     public void update(SpriteBatch batch){
 
@@ -69,7 +71,7 @@ public class GaryCharacter {
             velocity.x = 0;
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
-            velocity.y = Constants.JUMP_SPEED;
+            velocity.y = Constants.GARY_JUMP_SPEED;
         }
 
         if(gary.x < 0)
@@ -129,7 +131,7 @@ public class GaryCharacter {
         }
         else if(health == 0)
         {
-            game.setScreen(new GameOverScreen(game, true));
+            game.setScreen(new GameOverScreen(game, false));
 
         }
     }

@@ -29,7 +29,7 @@ public class GameOverScreen implements Screen{
         button = new Texture(Gdx.files.internal("assets/Button.png"));
         //background = new Texture(Gdx.files.internal("assets/"));
         background = new Texture(Gdx.files.internal("assets/GameOverBackground.jpg"));
-
+        this.garyWinner = garyWinner;
         this.game = game;
     }
 
