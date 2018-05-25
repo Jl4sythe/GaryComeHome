@@ -22,7 +22,15 @@ public class PowerUps
         //batch = new SpriteBatch();
     }
 
-    public void updatePower(float delta, Rectangle gary, Rectangle enemy)
+    public void renderPower(SpriteBatch batch)
+    {
+        for (Rectangle power : powers)
+        {
+            batch.draw(cookie, power.x, power.y, power.width, power.height);
+        }
+    }
+
+    public void checkPower(float delta, Rectangle gary, Rectangle enemy)
     {
         time += delta;
         for(int i = 0; i < powers.size; i++)
@@ -46,14 +54,6 @@ public class PowerUps
             spawnPower();
     }
 
-    public void renderPower(SpriteBatch batch)
-    {
-        for (Rectangle power : powers)
-        {
-            batch.draw(cookie, power.x, power.y, power.width, power.height);
-        }
-    }
-
     public void spawnPower()
     {
         Rectangle power = new Rectangle();
@@ -66,5 +66,19 @@ public class PowerUps
         time = 0;
     }
 
+    public int getGaryCtr() {
+        return garyCtr;
+    }
 
+    public void setGaryCtr(int garyCtr) {
+        this.garyCtr = garyCtr;
+    }
+
+    public int getEnemyCtr() {
+        return enemyCtr;
+    }
+
+    public void setEnemyCtr(int enemyCtr) {
+        this.enemyCtr = enemyCtr;
+    }
 }
