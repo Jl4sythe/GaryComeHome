@@ -44,11 +44,11 @@ public class GameOverScreen implements Screen{
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+        batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         GlyphLayout layout = new GlyphLayout(font, "GAME OVER FOOLS");
         font.draw(batch, "GAME OVER FOOLS", Constants.WORLD_WIDTH/2 - layout.width/2,Constants.WORLD_HEIGHT/2 + layout.height/2 + 30);
         batch.draw(button,Constants.WORLD_WIDTH/2 - 400,Constants.WORLD_HEIGHT/2 - 200,300,100);
         batch.draw(button,Constants.WORLD_WIDTH/2 + 100,Constants.WORLD_HEIGHT/2 - 200,300,100);
-        batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
 
         batch.end();
     }

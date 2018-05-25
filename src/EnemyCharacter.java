@@ -43,6 +43,11 @@ public class EnemyCharacter {
 
     }
 
+    public Rectangle getRectangle()
+    {
+        return enemy;
+    }
+
     public void update(SpriteBatch batch){
 
         checkHealth();

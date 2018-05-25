@@ -43,12 +43,9 @@ public class GaryCharacter {
     }
 
 
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
+    public Rectangle getRectangle()
+    {
+        return gary;
     }
 
     public void update(SpriteBatch batch){
