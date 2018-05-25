@@ -17,9 +17,11 @@ public class GameOverScreen implements Screen{
     private Texture background;
     private Texture button;
 
+    private boolean garyWinner;
+
     private GaryGame game;
 
-    public GameOverScreen(GaryGame game){
+    public GameOverScreen(GaryGame game, boolean garyWinner){
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT,camera);
         batch = new SpriteBatch();
@@ -40,15 +42,23 @@ public class GameOverScreen implements Screen{
     public void render(float v) {
         Gdx.gl.glClearColor(0,0,.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+        batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+
+        if(garyWinner){
+            GlyphLayout winnerLayout = new GlyphLayout(font,"Gary Wins!!");
+            font.draw(batch, "Gary Wins!!", Constants.WORLD_WIDTH/2 - winnerLayout.width/2, Constants.WORLD_HEIGHT/2 + winnerLayout.height/2 + 200);
+        }
+        else{
+            GlyphLayout winnerLayout = new GlyphLayout(font,"The Other Guy Wins!!");
+            font.draw(batch, "The Other Guy Wins!!", Constants.WORLD_WIDTH/2 - winnerLayout.width/2, Constants.WORLD_HEIGHT/2 + winnerLayout.height/2 + 200);
+        }
         GlyphLayout layout = new GlyphLayout(font, "GAME OVER FOOLS");
         font.draw(batch, "GAME OVER FOOLS", Constants.WORLD_WIDTH/2 - layout.width/2,Constants.WORLD_HEIGHT/2 + layout.height/2 + 30);
         batch.draw(button,Constants.WORLD_WIDTH/2 - 400,Constants.WORLD_HEIGHT/2 - 200,300,100);
         batch.draw(button,Constants.WORLD_WIDTH/2 + 100,Constants.WORLD_HEIGHT/2 - 200,300,100);
-        batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+        //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
 
         batch.end();
     }

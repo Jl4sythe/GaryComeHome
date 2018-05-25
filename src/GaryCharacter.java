@@ -43,13 +43,6 @@ public class GaryCharacter {
     }
 
 
-    public Vector2 getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2 velocity) {
-        this.velocity = velocity;
-    }
 
     public void update(SpriteBatch batch){
 
@@ -76,7 +69,7 @@ public class GaryCharacter {
             velocity.x = 0;
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
-            velocity.y = Constants.GARY_SPEED * 1.5f;
+            velocity.y = Constants.JUMP_SPEED;
         }
 
         if(gary.x < 0)
@@ -136,7 +129,7 @@ public class GaryCharacter {
         }
         else if(health == 0)
         {
-            game.setScreen(new GameOverScreen(game));
+            game.setScreen(new GameOverScreen(game, true));
 
         }
     }

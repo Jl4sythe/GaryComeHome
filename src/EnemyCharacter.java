@@ -67,7 +67,7 @@ public class EnemyCharacter {
             velocity.x = 0;
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.UP) && velocity.y == 0){
-            velocity.y = Constants.GARY_SPEED * 1.5f;
+            velocity.y = Constants.JUMP_SPEED;
         }
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
@@ -131,7 +131,7 @@ public class EnemyCharacter {
         }
         else if(health == 0)
         {
-            game.setScreen(new GameOverScreen(game));
+            game.setScreen(new GameOverScreen(game, false));
 
         }
     }
