@@ -12,4 +12,5 @@ public class Constants {
     public final static float LASER_SPEED = 350f;
     public final static float POWER_SIZE = 50f;
     public final static float POWER_SPEED = 3f;
+    public final static float SPAWN_SPEED = .1f;
 }

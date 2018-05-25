@@ -20,6 +20,7 @@ public class GameScreen implements Screen
     private ShapeRenderer renderer;
     private Viewport viewport;
     private Texture gameBackground;
+    private PowerUps power;
 
     private Music song;
 
@@ -44,6 +45,7 @@ public class GameScreen implements Screen
         gary = new GaryCharacter(game);
         enemy = new EnemyCharacter(game);
         lasers = new ArrayList<Laser>();
+        power = new PowerUps(game);
 
         song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
         song.setLooping(true);
@@ -58,9 +60,14 @@ public class GameScreen implements Screen
         Gdx.gl.glClearColor(0,0,.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        power.updatePower(delta);
+
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(gameBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+
+        power.renderPower();
+
         gary.update(batch);
         enemy.update(batch);
         updateLasers();
