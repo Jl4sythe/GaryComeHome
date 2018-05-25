@@ -10,16 +10,14 @@ public class PowerUps
     private Array<Rectangle> powers;
     private float time;
     private Texture cookie;
-    private int garyCtr;
-    private int enemyCtr;
-    //private SpriteBatch batch;
+    public static int garyCtr;
+    public static int enemyCtr;
 
     public PowerUps(GaryGame game)
     {
         powers = new Array<Rectangle>();
         time = 0;
         cookie = new Texture(Gdx.files.internal("assets/cookie.png"));
-        //batch = new SpriteBatch();
     }
 
     public void renderPower(SpriteBatch batch)
