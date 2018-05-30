@@ -85,7 +85,7 @@ public class GameScreen implements Screen
 
     public void resize(int width, int height)
     {
-        viewport.update(width, height,true);//not sure if it should be true or not tho
+        viewport.update(width, height, true);//not sure if it should be true or not tho
     }
 
     public void pause()
