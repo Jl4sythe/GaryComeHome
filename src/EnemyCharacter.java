@@ -163,7 +163,7 @@ public class EnemyCharacter {
     public void updatePower(float delta) {
         if (PowerUps.enemyCtr == 1)
         {
-            Constants.ENEMY_JUMP_SPEED = Constants.CHANGED_JUMP_SPEED;
+            Constants.ENEMY_JUMP_SPEED = Constants.FAST_JUMP_SPEED;
         }
         else if(PowerUps.enemyCtr == 2)
         {
@@ -172,6 +172,10 @@ public class EnemyCharacter {
         else if(PowerUps.enemyCtr == 3)
         {
             Constants.ENEMY_SPEED = Constants.CHANGED_SPEED;
+        }
+        else if(PowerUps.enemyCtr == 4)
+        {
+            Constants.ENEMY_JUMP_SPEED = Constants.SLOW_JUMP_SPEED;
         }
 
         time += delta;
@@ -189,6 +193,10 @@ public class EnemyCharacter {
             else if(PowerUps.enemyCtr == 3)
             {
                 Constants.ENEMY_SPEED = Constants.ORIGINAL_SPEED;
+            }
+            else if(PowerUps.enemyCtr == 4)
+            {
+                Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
             }
 
             time = 0;

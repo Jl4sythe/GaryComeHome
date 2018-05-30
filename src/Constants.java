@@ -7,7 +7,8 @@ public class Constants {
     public final static float GRAVITY = -600f;
     public static float GARY_JUMP_SPEED = 500;
     public static float ENEMY_JUMP_SPEED = 500;
-    public final static float CHANGED_JUMP_SPEED = 700;
+    public final static float FAST_JUMP_SPEED = 700;
+    public final static float SLOW_JUMP_SPEED = 300;
     public final static float ORIGINAL_JUMP_SPEED = 500;
 
     public static float GARY_SPEED = 266.5f;
