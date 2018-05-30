@@ -1,9 +1,15 @@
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 
 public class LevelOneScreen extends GameScreen implements Screen {
 
     public LevelOneScreen(GaryGame game){
         super(game);
+        super.setBackground(new Texture(Gdx.files.internal("assets/LevelOneBackground.jpg")));
+        super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 500, 2 * Constants.WORLD_HEIGHT/3 - 10, 300, 10));
+        super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 + 200, Constants.WORLD_HEIGHT - 10, 300, 10));
+        super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 150, Constants.WORLD_HEIGHT/3 - 10, 300, 10));
     }
 
     @Override
@@ -16,15 +22,6 @@ public class LevelOneScreen extends GameScreen implements Screen {
         super.render(delta);
     }
 
-    @Override
-    public void updateLasers() {
-        super.updateLasers();
-    }
-
-    @Override
-    public void addPlatform(Platform p) {
-        super.addPlatform(p);
-    }
 
     @Override
     public void resize(int width, int height) {

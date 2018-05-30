@@ -52,7 +52,6 @@ public class GameScreen implements Screen
 //        song.setLooping(true);
 //        song.play();
 
-        gameBackground = new Texture(Gdx.files.internal("assets/gameBackground.jpg"));
     }
 
     public static List<Platform> getPlatforms(){
@@ -87,6 +86,10 @@ public class GameScreen implements Screen
 
     public void addPlatform(Platform p){
         platforms.add(p);
+    }
+
+    public void setBackground(Texture texture){
+        gameBackground = texture;
     }
 
     public void resize(int width, int height) {
