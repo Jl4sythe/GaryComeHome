@@ -17,21 +17,22 @@ public class Laser {
         laserTex = new Texture(Gdx.files.internal("assets/Laser.png"));
     }
 
-    public void update()
-    {
+    public void update(int i) {
         ctr++;
         batch.draw(laserTex, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-        if(ctr < 40)
-        {
+        if(ctr < 40) {
             if (facingRight)
                 rectangle.x += Constants.LASER_SPEED * (1 / 60.0);
             else
                 rectangle.x -= Constants.LASER_SPEED * (1 / 60.0);
+
+            for(Platform p: GameScreen.getPlatforms()){
+                if(rectangle.overlaps(p.getRectangle()))
+                    GameScreen.lasers.remove(i);
+            }
         }
         else
-        {
-            rectangle.x = -20;
-        }
+            GameScreen.lasers.remove(i);
     }
 
     public Rectangle getRectangle() {

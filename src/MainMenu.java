@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import sun.awt.image.GifImageDecoder;
 
 
-public class MainMenu extends ApplicationAdapter implements Screen {
+public class MainMenu implements Screen {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Viewport viewport;

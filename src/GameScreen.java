@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameScreen implements Screen
 {
@@ -26,16 +27,15 @@ public class GameScreen implements Screen
 
     private GaryCharacter gary;
     private EnemyCharacter enemy;
-    public static ArrayList<Laser> lasers;
-
+    public static List<Laser> lasers;
+    private static List<Platform> platforms;
     private GaryGame game;
 
     public GameScreen(GaryGame game) {
         this.game = game;
     }
 
-    public void show()
-    {
+    public void show() {
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
@@ -46,18 +46,20 @@ public class GameScreen implements Screen
         enemy = new EnemyCharacter(game);
         lasers = new ArrayList<Laser>();
         power = new PowerUps(game);
+        platforms = new ArrayList<Platform>();
 
 //        song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
 //        song.setLooping(true);
 //        song.play();
 
         gameBackground = new Texture(Gdx.files.internal("assets/gameBackground.jpg"));
-
     }
 
+    public static List<Platform> getPlatforms(){
+        return platforms;
+    }
 
-    public void render(float delta)
-    {
+    public void render(float delta) {
         Gdx.gl.glClearColor(0,0,.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -78,23 +80,24 @@ public class GameScreen implements Screen
     }
 
     public void updateLasers(){
-        for(Laser l: lasers){
-            l.update();
+        for (int i = 0; i < lasers.size(); i++) {
+            lasers.get(i).update(i);
         }
     }
 
-    public void resize(int width, int height)
-    {
-        viewport.update(width, height,true);//not sure if it should be true or not tho
+    public void addPlatform(Platform p){
+        platforms.add(p);
     }
 
-    public void pause()
-    {
+    public void resize(int width, int height) {
+        viewport.update(width, height, true);//not sure if it should be true or not tho
+    }
+
+    public void pause() {
 
     }
 
-    public void resume()
-    {
+    public void resume() {
 
     }
 
@@ -102,8 +105,7 @@ public class GameScreen implements Screen
 
     }
 
-    public void dispose()
-    {
+    public void dispose() {
         font.dispose();
         batch.dispose();
 
