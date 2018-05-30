@@ -43,7 +43,6 @@ public class MainMenu implements Screen {
         viewport = new FitViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT,camera);
         batch = new SpriteBatch();
         font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
-        menuBackground = new Texture(Gdx.files.internal("assets/garyRight.png"));
         renderer = new ShapeRenderer();
         button = new Texture(Gdx.files.internal("assets/Button.png"));
         word = new Texture(Gdx.files.internal("assets/play word.png"));
@@ -85,7 +84,7 @@ public class MainMenu implements Screen {
 
             pos = viewport.unproject(new Vector2(x,y));
             if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 180 && pos.y <= Constants.WORLD_HEIGHT - 80)
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new SelectionScreen(game));
             if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 430 && pos.y <= Constants.WORLD_HEIGHT - 330)
                 dispose();
         }

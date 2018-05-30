@@ -29,8 +29,8 @@ public class EnemyCharacter {
         this.game = game;
 
         this.velocity = new Vector2(0,0);
-        garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
-        garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
+        garyTexR = new Texture(Gdx.files.internal("assets/enemyRight.png"));
+        garyTexL = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
 
         enemy = new Rectangle();
         enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
@@ -41,7 +41,7 @@ public class EnemyCharacter {
         renderer = new ShapeRenderer();
 
         health = 3;
-        shell = new Texture(Gdx.files.internal("assets/garyLeft.png"));
+        shell = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
 
     }
 
