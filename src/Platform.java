@@ -8,7 +8,7 @@ public class Platform {
 
     public Platform(float x, float y, float width, float height){
         rectangle = new Rectangle(x,y,width,height);
-        tex = new Texture(Gdx.files.internal("assets/Platform.png"));
+        tex = new Texture(Gdx.files.internal("assets/platform.png"));
     }
 
     public Rectangle getRectangle(){
