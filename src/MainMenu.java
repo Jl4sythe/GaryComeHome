@@ -56,13 +56,6 @@ public class MainMenu implements Screen {
         Gdx.gl.glClearColor(0,0,.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        renderer.setProjectionMatrix(camera.combined);
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
-        renderer.setColor(Color.TEAL);
-        renderer.rect(1600,900,300,100);
-        renderer.rect(1600,650,300,100);
-        renderer.end();
-
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);

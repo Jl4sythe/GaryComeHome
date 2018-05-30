@@ -12,6 +12,7 @@ public class PowerUps
     private Texture cookie;
     private Texture purpleCookie;
     private Texture greenCookie;
+    private Texture redCookie;
     public static int garyCtr;
     public static int enemyCtr;
 
@@ -22,6 +23,7 @@ public class PowerUps
         cookie = new Texture(Gdx.files.internal("assets/cookie.png"));
         purpleCookie = new Texture(Gdx.files.internal("assets/purpleCookie.png"));
         greenCookie = new Texture(Gdx.files.internal("assets/greenCookie.png"));
+        redCookie = new Texture(Gdx.files.internal("assets/redCookie.png"));
     }
 
     public void renderPower(SpriteBatch batch)
@@ -35,6 +37,8 @@ public class PowerUps
                 batch.draw(purpleCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
             else if(val == 3)
                 batch.draw(greenCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
+            else if(val == 4)
+                batch.draw(redCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
         }
     }
 
@@ -74,7 +78,7 @@ public class PowerUps
         power.width = Constants.POWER_SIZE;
         power.height = Constants.POWER_SIZE;
 
-        int val = (int)(Math.random()*3+1);
+        int val = (int)(Math.random()*4+1);
         Cookie set = new Cookie(power, val);
 
         powers.add(set);

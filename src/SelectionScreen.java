@@ -50,13 +50,6 @@ public class SelectionScreen implements Screen
         Gdx.gl.glClearColor(0,0,.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-//        renderer.setProjectionMatrix(camera.combined);
-//        renderer.begin(ShapeRenderer.ShapeType.Filled);
-//        renderer.setColor(Color.TEAL);
-//        renderer.rect(1600,900,300,100);
-//        renderer.rect(1600,650,300,100);
-//        renderer.end();
-
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
@@ -85,10 +78,24 @@ public class SelectionScreen implements Screen
             int y = Gdx.input.getY();
 
             pos = viewport.unproject(new Vector2(x,y));
-            if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 180 && pos.y <= Constants.WORLD_HEIGHT - 80)
-                game.setScreen(new GameScreen(game));
-            if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 430 && pos.y <= Constants.WORLD_HEIGHT - 330)
-                dispose();
+            if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 645 && pos.y >= Constants.WORLD_HEIGHT - 190 && pos.y <= Constants.WORLD_HEIGHT - 90)
+                game.setScreen(new LevelOneScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 190 && pos.y <= Constants.WORLD_HEIGHT - 90)
+                game.setScreen(new LevelOneScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 190 && pos.y <= Constants.WORLD_HEIGHT - 90)
+                game.setScreen(new LevelOneScreen(game));
+            if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 645 && pos.y >= Constants.WORLD_HEIGHT - 350 && pos.y <= Constants.WORLD_HEIGHT - 250)
+                game.setScreen(new LevelOneScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 350 && pos.y <= Constants.WORLD_HEIGHT - 250)
+                game.setScreen(new LevelOneScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 350 && pos.y <= Constants.WORLD_HEIGHT - 250)
+                game.setScreen(new LevelOneScreen(game));
+            if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 645 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
+                game.setScreen(new LevelOneScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
+                game.setScreen(new LevelOneScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
+                game.setScreen(new LevelOneScreen(game));
         }
     }
 

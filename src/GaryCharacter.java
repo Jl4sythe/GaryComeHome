@@ -159,7 +159,7 @@ public class GaryCharacter {
 
         if (PowerUps.garyCtr == 1)
         {
-            Constants.GARY_JUMP_SPEED = Constants.CHANGED_JUMP_SPEED;
+            Constants.GARY_JUMP_SPEED = Constants.FAST_JUMP_SPEED;
         }
         else if(PowerUps.garyCtr == 2)
         {
@@ -168,6 +168,10 @@ public class GaryCharacter {
         else if(PowerUps.garyCtr == 3)
         {
             Constants.GARY_SPEED = Constants.CHANGED_SPEED;
+        }
+        else if(PowerUps.garyCtr == 4)
+        {
+            Constants.GARY_JUMP_SPEED = Constants.SLOW_JUMP_SPEED;
         }
 
         time += delta;
@@ -185,6 +189,10 @@ public class GaryCharacter {
             else if(PowerUps.garyCtr == 3)
             {
                 Constants.GARY_SPEED = Constants.ORIGINAL_SPEED;
+            }
+            else if(PowerUps.garyCtr == 4)
+            {
+                Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
             }
 
             time = 0;
