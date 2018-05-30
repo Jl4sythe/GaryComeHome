@@ -20,6 +20,7 @@ public class GaryCharacter {
     private Rectangle gary;
 
     private int coolDown = 0;
+    private double var = 1;
     private float time = 0;
 
     public GaryCharacter(GaryGame game) {
@@ -141,11 +142,11 @@ public class GaryCharacter {
         if(coolDown == 0) {
             if (facingRight) {
                 GameScreen.lasers.add(new Laser(facingRight, gary.x + gary.width + 1, gary.y + gary.height - 15, batch));
-                coolDown = 60;
+                coolDown = (int)(60*var);
             }
             else {
                 GameScreen.lasers.add(new Laser(facingRight, gary.x - Constants.LASER_WIDTH, gary.y + gary.height - 15, batch));
-                coolDown = 60;
+                coolDown = (int)(60*var);
             }
         }
     }
@@ -155,16 +156,37 @@ public class GaryCharacter {
     }
 
     public void updatePower(float delta) {
-        if (PowerUps.garyCtr == 1) {
-            Constants.GARY_JUMP_SPEED = Constants.CHANGED_SPEED;
+
+        if (PowerUps.garyCtr == 1)
+        {
+            Constants.GARY_JUMP_SPEED = Constants.CHANGED_JUMP_SPEED;
         }
+        else if(PowerUps.garyCtr == 2)
+        {
+            var = .5;
+        }
+        else if(PowerUps.garyCtr == 3)
+        {
+            Constants.GARY_SPEED = Constants.CHANGED_SPEED;
+        }
+
         time += delta;
+
         if (time > Constants.POWER_TIME)
         {
             if(PowerUps.garyCtr == 1)
             {
-                Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_SPEED;
+                Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
             }
+            else if(PowerUps.garyCtr == 2)
+            {
+                var = 1;
+            }
+            else if(PowerUps.garyCtr == 3)
+            {
+                Constants.GARY_SPEED = Constants.ORIGINAL_SPEED;
+            }
+
             time = 0;
             PowerUps.garyCtr = 0;
         }

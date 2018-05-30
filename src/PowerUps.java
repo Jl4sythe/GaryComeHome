@@ -7,24 +7,34 @@ import com.badlogic.gdx.utils.Array;
 
 public class PowerUps
 {
-    private Array<Rectangle> powers;
+    private Array<Cookie> powers;
     private float time;
     private Texture cookie;
+    private Texture purpleCookie;
+    private Texture greenCookie;
     public static int garyCtr;
     public static int enemyCtr;
 
     public PowerUps(GaryGame game)
     {
-        powers = new Array<Rectangle>();
+        powers = new Array<Cookie>();
         time = 0;
         cookie = new Texture(Gdx.files.internal("assets/cookie.png"));
+        purpleCookie = new Texture(Gdx.files.internal("assets/purpleCookie.png"));
+        greenCookie = new Texture(Gdx.files.internal("assets/greenCookie.png"));
     }
 
     public void renderPower(SpriteBatch batch)
     {
-        for (Rectangle power : powers)
+        for (Cookie power : powers)
         {
-            batch.draw(cookie, power.x, power.y, power.width, power.height);
+            int val = power.getCheck();
+            if(val == 1)
+                batch.draw(cookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
+            else if(val == 2)
+                batch.draw(purpleCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
+            else if(val == 3)
+                batch.draw(greenCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
         }
     }
 
@@ -33,24 +43,26 @@ public class PowerUps
         time += delta;
         for(int i = 0; i < powers.size; i++)
         {
-            Rectangle filler = powers.get(i);
+            Rectangle filler = powers.get(i).getRectangle();
+            int check = powers.get(i).getCheck();
+
             filler.y -= Constants.POWER_SPEED;
 
             if(filler.overlaps(gary))
             {
-                garyCtr++;
+                garyCtr = check;
                 powers.removeIndex(i);
             }
             else if(filler.overlaps(enemy))
             {
-                enemyCtr++;
+                enemyCtr = check;
                 powers.removeIndex(i);
             }
 
             if(filler.y + Constants.POWER_SIZE < 0)
                 powers.removeIndex(i);
         }
-        if(time > Constants.SPAWN_SPEED)
+        if(time > (float)(Math.random()*10+10))
             spawnPower();
     }
 
@@ -62,7 +74,10 @@ public class PowerUps
         power.width = Constants.POWER_SIZE;
         power.height = Constants.POWER_SIZE;
 
-        powers.add(power);
+        int val = (int)(Math.random()*3+1);
+        Cookie set = new Cookie(power, val);
+
+        powers.add(set);
         time = 0;
     }
 

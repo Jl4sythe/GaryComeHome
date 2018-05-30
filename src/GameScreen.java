@@ -47,9 +47,9 @@ public class GameScreen implements Screen
         lasers = new ArrayList<Laser>();
         power = new PowerUps(game);
 
-        song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
-        song.setLooping(true);
-        song.play();
+//        song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
+//        song.setLooping(true);
+//        song.play();
 
         gameBackground = new Texture(Gdx.files.internal("assets/gameBackground.jpg"));
 

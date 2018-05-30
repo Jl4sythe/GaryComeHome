@@ -20,6 +20,7 @@ public class EnemyCharacter {
     private Rectangle enemy;
 
     private int coolDown = 0;
+    private double var = 1;
     private float time = 0;
 
     public EnemyCharacter(GaryGame game) {
@@ -62,11 +63,11 @@ public class EnemyCharacter {
 
 
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            velocity.x = -Constants.GARY_SPEED;
+            velocity.x = -Constants.ENEMY_SPEED;
             facingRight = false;
         }
         else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            velocity.x = Constants.GARY_SPEED;
+            velocity.x = Constants.ENEMY_SPEED;
             facingRight = true;
         }
         else
@@ -146,11 +147,11 @@ public class EnemyCharacter {
         if(coolDown == 0) {
             if (facingRight) {
                 GameScreen.lasers.add(new Laser(facingRight, enemy.x + enemy.width + 1, enemy.y + enemy.height - 15, batch));
-                coolDown = 1 * 60;
+                coolDown = (int)(60*var);
             }
             else {
                 GameScreen.lasers.add(new Laser(facingRight, enemy.x - Constants.LASER_WIDTH, enemy.y + enemy.height - 15, batch));
-                coolDown = 1 * 60;
+                coolDown = (int)(60*var);
             }
         }
     }
@@ -160,16 +161,36 @@ public class EnemyCharacter {
     }
 
     public void updatePower(float delta) {
-        if (PowerUps.enemyCtr == 1) {
-            Constants.ENEMY_JUMP_SPEED = Constants.CHANGED_SPEED;
+        if (PowerUps.enemyCtr == 1)
+        {
+            Constants.ENEMY_JUMP_SPEED = Constants.CHANGED_JUMP_SPEED;
         }
+        else if(PowerUps.enemyCtr == 2)
+        {
+            var = 0.25;
+        }
+        else if(PowerUps.enemyCtr == 3)
+        {
+            Constants.ENEMY_SPEED = Constants.CHANGED_SPEED;
+        }
+
         time += delta;
+
         if (time > Constants.POWER_TIME)
         {
             if(PowerUps.enemyCtr == 1)
             {
-                Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_SPEED;
+                Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
             }
+            else if(PowerUps.enemyCtr == 2)
+            {
+                var = 1;
+            }
+            else if(PowerUps.enemyCtr == 3)
+            {
+                Constants.ENEMY_SPEED = Constants.ORIGINAL_SPEED;
+            }
+
             time = 0;
             PowerUps.enemyCtr = 0;
         }

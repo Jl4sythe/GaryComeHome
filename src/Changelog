@@ -1,0 +1,13 @@
+May 25, 2018 - After School
+-Created Cookie class to hold Rectangle and int together
+-Set up updatePower(), renderPower(), and spawnPower() to take in multiple power-ups
+-Created Green Cookie which speeds up character
+-Created Purple Cookie which speeds up fire rate
+-Changed laser to travel only 40 pixels instead of infinitely for longevity of game
+-Removed POWER_TIME constant and created a Math.random() int in the PowerUps Class
+-Made GARY_SPEED and ENEMY_SPEED as variables and ORIGINAL_SPEED and CHANGED_SPEED as constants
+
+-Need to fix PlayAgain button
+-Need to object-orient lasers
+-Need to fix dispose() issue
+

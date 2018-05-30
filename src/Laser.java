@@ -8,6 +8,7 @@ public class Laser {
     private Rectangle rectangle;
     private SpriteBatch batch;
     private Texture laserTex;
+    private int ctr = 0;
 
     public Laser(boolean facingRight, float x, float y, SpriteBatch batch){
         this.facingRight = facingRight;
@@ -18,11 +19,19 @@ public class Laser {
 
     public void update()
     {
+        ctr++;
         batch.draw(laserTex, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-        if(facingRight)
-            rectangle.x += Constants.LASER_SPEED * (1/60.0);
+        if(ctr < 40)
+        {
+            if (facingRight)
+                rectangle.x += Constants.LASER_SPEED * (1 / 60.0);
+            else
+                rectangle.x -= Constants.LASER_SPEED * (1 / 60.0);
+        }
         else
-            rectangle.x -= Constants.LASER_SPEED * (1/60.0);
+        {
+            rectangle.x = -20;
+        }
     }
 
     public Rectangle getRectangle() {
