@@ -86,7 +86,7 @@ public class GaryCharacter {
         gary.y += velocity.y * (1.0/60);
 
 
-        if(gary.y > 0){
+        if(gary.y > 0 ){
             gary.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
             velocity.y += Constants.GRAVITY * (1.0/60);
         }

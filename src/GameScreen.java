@@ -33,6 +33,7 @@ public class GameScreen implements Screen
 
     public GameScreen(GaryGame game) {
         this.game = game;
+        platforms = new ArrayList<Platform>();
     }
 
     public void show() {
@@ -46,7 +47,7 @@ public class GameScreen implements Screen
         enemy = new EnemyCharacter(game);
         lasers = new ArrayList<Laser>();
         power = new PowerUps(game);
-        platforms = new ArrayList<Platform>();
+
 
 //        song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
 //        song.setLooping(true);
@@ -74,6 +75,9 @@ public class GameScreen implements Screen
         gary.update(batch);
         enemy.updatePower(delta);
         enemy.update(batch);
+        for(Platform p: platforms){
+            p.update(batch);
+        }
         updateLasers();
         batch.end();
     }
