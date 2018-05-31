@@ -20,6 +20,8 @@ public class EnemyCharacter {
 
     private Texture garyTexR;
     private Texture garyTexL;
+    private Texture patTexR;
+    private Texture patTexL;
     private Rectangle enemy;
 
     private int coolDown = 0;
@@ -36,6 +38,8 @@ public class EnemyCharacter {
         this.velocity = new Vector2(0,0);
         garyTexR = new Texture(Gdx.files.internal("assets/enemyRight.png"));
         garyTexL = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
+        patTexR = new Texture(Gdx.files.internal("assets/patrickRight.png"));
+        patTexL = new Texture(Gdx.files.internal("assets/patrickRight.png"));
 
         enemy = new Rectangle();
         enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
@@ -61,11 +65,18 @@ public class EnemyCharacter {
 
         checkHealth();
         updateHealth(batch);
-
-        if(facingRight)
-            batch.draw(garyTexR, enemy.x, enemy.y, enemy.width, enemy.height);
-        else if(!facingRight)
-            batch.draw(garyTexL, enemy.x, enemy.y, enemy.width, enemy.height);
+        if(Gdx.input.isKeyPressed(Input.Keys.P)) {
+            if (facingRight)
+                batch.draw(patTexR, enemy.x, enemy.y, enemy.width, enemy.height);
+            else if (!facingRight)
+                batch.draw(patTexL, enemy.x, enemy.y, enemy.width, enemy.height);
+        }
+        else {
+            if (facingRight)
+                batch.draw(garyTexR, enemy.x, enemy.y, enemy.width, enemy.height);
+            else if (!facingRight)
+                batch.draw(garyTexL, enemy.x, enemy.y, enemy.width, enemy.height);
+        }
 
 
 
