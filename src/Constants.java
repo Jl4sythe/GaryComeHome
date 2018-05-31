@@ -21,7 +21,7 @@ public class Constants {
 
     public final static int SHELL_SIZE = 50;
 
-    public final static float LASER_SPEED = 350f;
+    public static float LASER_SPEED = 700f;//350f;
     public final static float LASER_WIDTH = 14f;
     public final static float LASER_HEIGHT = 4f;
 

@@ -96,6 +96,10 @@ public class SelectionScreen implements Screen
                 game.setScreen(new LevelOneScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
                 game.setScreen(new LevelOneScreen(game));
+
+            GaryCharacter.time = Constants.POWER_TIME;
+            EnemyCharacter.time = Constants.POWER_TIME;
+
         }
     }
 

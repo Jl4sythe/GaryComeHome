@@ -20,7 +20,7 @@ public class Laser {
     public void update(int i) {
         ctr++;
         batch.draw(laserTex, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-        if(ctr < 40) {
+        if(ctr < 20) {
             if (facingRight)
                 rectangle.x += Constants.LASER_SPEED * (1 / 60.0);
             else

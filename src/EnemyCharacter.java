@@ -1,6 +1,7 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -13,24 +14,32 @@ public class EnemyCharacter {
     private boolean facingRight;
     private int health;
     private Texture shell;
+    private Texture cross;
     private GaryGame game;
+    private BitmapFont font;
 
     private Texture garyTexR;
     private Texture garyTexL;
+    private Texture patTexR;
+    private Texture patTexL;
     private Rectangle enemy;
 
     private int coolDown = 0;
     private double var = 1;
-    private float time = 0;
+    public static float time = 0;
+    private int loss;
 
     public EnemyCharacter(GaryGame game) {
         facingRight = false;
+        loss = 0;
 
         this.game = game;
 
         this.velocity = new Vector2(0,0);
         garyTexR = new Texture(Gdx.files.internal("assets/enemyRight.png"));
         garyTexL = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
+        patTexR = new Texture(Gdx.files.internal("assets/patrickRight.png"));
+        patTexL = new Texture(Gdx.files.internal("assets/patrickRight.png"));
 
         enemy = new Rectangle();
         enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
@@ -39,9 +48,11 @@ public class EnemyCharacter {
         enemy.height = Constants.GARY_HEIGHT;
 
         renderer = new ShapeRenderer();
+        font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
 
         health = 3;
         shell = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
+        cross = new Texture(Gdx.files.internal("assets/X.png"));
 
     }
 
@@ -54,11 +65,18 @@ public class EnemyCharacter {
 
         checkHealth();
         updateHealth(batch);
-
-        if(facingRight)
-            batch.draw(garyTexR, enemy.x, enemy.y, enemy.width, enemy.height);
-        else if(!facingRight)
-            batch.draw(garyTexL, enemy.x, enemy.y, enemy.width, enemy.height);
+        if(Gdx.input.isKeyPressed(Input.Keys.P)) {
+            if (facingRight)
+                batch.draw(patTexR, enemy.x, enemy.y, enemy.width, enemy.height);
+            else if (!facingRight)
+                batch.draw(patTexL, enemy.x, enemy.y, enemy.width, enemy.height);
+        }
+        else {
+            if (facingRight)
+                batch.draw(garyTexR, enemy.x, enemy.y, enemy.width, enemy.height);
+            else if (!facingRight)
+                batch.draw(garyTexL, enemy.x, enemy.y, enemy.width, enemy.height);
+        }
 
 
 
@@ -112,6 +130,7 @@ public class EnemyCharacter {
         for(int i = 0; i < GameScreen.lasers.size(); i++){
             if(enemy.overlaps(GameScreen.lasers.get(i).getRectangle())) {
                 health--;
+                loss = 60;
                 GameScreen.lasers.remove(i);
                 i--;
             }
@@ -140,6 +159,13 @@ public class EnemyCharacter {
         {
             game.setScreen(new GameOverScreen(game, true));
 
+        }
+
+        if(loss > 0)
+        {
+            //font.draw(batch, "-1", enemy.x, enemy.y +100);
+            batch.draw(cross, enemy.x + Constants.GARY_WIDTH/2 - 20, enemy.y + Constants.GARY_HEIGHT + 20, Constants.GARY_WIDTH/2, Constants.GARY_HEIGHT/2);
+            loss--;
         }
     }
 
@@ -180,7 +206,7 @@ public class EnemyCharacter {
 
         time += delta;
 
-        if (time > Constants.POWER_TIME)
+        if (time >= Constants.POWER_TIME)
         {
             if(PowerUps.enemyCtr == 1)
             {
