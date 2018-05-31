@@ -1,6 +1,7 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -13,7 +14,9 @@ public class EnemyCharacter {
     private boolean facingRight;
     private int health;
     private Texture shell;
+    private Texture cross;
     private GaryGame game;
+    private BitmapFont font;
 
     private Texture garyTexR;
     private Texture garyTexL;
@@ -21,10 +24,12 @@ public class EnemyCharacter {
 
     private int coolDown = 0;
     private double var = 1;
-    private float time = 0;
+    public static float time = 0;
+    private int loss;
 
     public EnemyCharacter(GaryGame game) {
         facingRight = false;
+        loss = 0;
 
         this.game = game;
 
@@ -39,9 +44,11 @@ public class EnemyCharacter {
         enemy.height = Constants.GARY_HEIGHT;
 
         renderer = new ShapeRenderer();
+        font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
 
         health = 3;
         shell = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
+        cross = new Texture(Gdx.files.internal("assets/X.png"));
 
     }
 
@@ -112,6 +119,7 @@ public class EnemyCharacter {
         for(int i = 0; i < GameScreen.lasers.size(); i++){
             if(enemy.overlaps(GameScreen.lasers.get(i).getRectangle())) {
                 health--;
+                loss = 60;
                 GameScreen.lasers.remove(i);
                 i--;
             }
@@ -140,6 +148,13 @@ public class EnemyCharacter {
         {
             game.setScreen(new GameOverScreen(game, true));
 
+        }
+
+        if(loss > 0)
+        {
+            //font.draw(batch, "-1", enemy.x, enemy.y +100);
+            batch.draw(cross, enemy.x + Constants.GARY_WIDTH/2 - 20, enemy.y + Constants.GARY_HEIGHT + 20, Constants.GARY_WIDTH/2, Constants.GARY_HEIGHT/2);
+            loss--;
         }
     }
 
@@ -180,7 +195,7 @@ public class EnemyCharacter {
 
         time += delta;
 
-        if (time > Constants.POWER_TIME)
+        if (time >= Constants.POWER_TIME)
         {
             if(PowerUps.enemyCtr == 1)
             {

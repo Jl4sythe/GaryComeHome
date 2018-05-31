@@ -64,9 +64,7 @@ public class MainMenu implements Screen {
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
 
 
-        font.draw(batch, "Welcome to Gary Come Home v0.1!", 100, 150);
-        font.draw(batch, "Click the buttons to begin", 100, 100);
-
+        font.draw(batch, "GARY COME HOME", 100, 100);
 
         batch.end();
 

@@ -1,6 +1,7 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -14,6 +15,7 @@ public class GaryCharacter {
     private int health;
     private Texture shell;
     private GaryGame game;
+    private BitmapFont font;
     
     private Texture garyTexR;
     private Texture garyTexL;
@@ -21,10 +23,12 @@ public class GaryCharacter {
 
     private int coolDown = 0;
     private double var = 1;
-    private float time = 0;
+    public static  float time = 0;
+    private int loss;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
+        loss = 0;
 
         this.game = game;
 
@@ -39,6 +43,7 @@ public class GaryCharacter {
         gary.height = Constants.GARY_HEIGHT;
 
         renderer = new ShapeRenderer();
+        font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
 
         health = 3;
         shell = new Texture(Gdx.files.internal("assets/garyRight.png"));
@@ -107,6 +112,7 @@ public class GaryCharacter {
         for(int i = 0; i < GameScreen.lasers.size(); i++){
             if(gary.overlaps(GameScreen.lasers.get(i).getRectangle())) {
                 health--;
+                loss = 60;
                 GameScreen.lasers.remove(i);
                 i--;
             }
@@ -135,6 +141,12 @@ public class GaryCharacter {
         {
             game.setScreen(new GameOverScreen(game, false));
 
+        }
+
+        if(loss > 0)
+        {
+            font.draw(batch, "-1", gary.x, gary.y +100);
+            loss--;
         }
     }
 
@@ -176,7 +188,7 @@ public class GaryCharacter {
 
         time += delta;
 
-        if (time > Constants.POWER_TIME)
+        if (time >= Constants.POWER_TIME)
         {
             if(PowerUps.garyCtr == 1)
             {
