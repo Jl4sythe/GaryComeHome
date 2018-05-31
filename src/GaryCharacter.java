@@ -14,6 +14,7 @@ public class GaryCharacter {
     static boolean facingRight;
     private int health;
     private Texture shell;
+    private Texture cross;
     private GaryGame game;
     private BitmapFont font;
     
@@ -47,6 +48,7 @@ public class GaryCharacter {
 
         health = 3;
         shell = new Texture(Gdx.files.internal("assets/garyRight.png"));
+        cross = new Texture(Gdx.files.internal("assets/X.png"));
     }
 
     public Rectangle getRectangle(){
@@ -145,7 +147,8 @@ public class GaryCharacter {
 
         if(loss > 0)
         {
-            font.draw(batch, "-1", gary.x, gary.y +100);
+            //font.draw(batch, "-1", gary.x, gary.y +100);
+            batch.draw(cross, gary.x + Constants.GARY_WIDTH/2 - 20, gary.y + Constants.GARY_HEIGHT + 20, Constants.GARY_WIDTH/2, Constants.GARY_HEIGHT/2);
             loss--;
         }
     }
