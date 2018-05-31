@@ -31,14 +31,13 @@ public class MainMenu implements Screen {
     private GaryGame game;
 
 
-    public MainMenu(GaryGame game)
-    {
+    public MainMenu(GaryGame game) {
         this.game = game;
+
     }
 
     @Override
-    public void show()
-    {
+    public void show() {
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT,camera);
         batch = new SpriteBatch();

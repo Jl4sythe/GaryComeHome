@@ -1,5 +1,6 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Platform {
@@ -9,6 +10,10 @@ public class Platform {
     public Platform(float x, float y, float width, float height){
         rectangle = new Rectangle(x,y,width,height);
         tex = new Texture(Gdx.files.internal("assets/platform.png"));
+    }
+
+    public void update(SpriteBatch batch){
+        batch.draw(tex, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
     public Rectangle getRectangle(){
