@@ -50,7 +50,7 @@ public class EnemyCharacter {
         return enemy;
     }
 
-    public void update(SpriteBatch batch){
+    public void update(SpriteBatch batch, float delta){
 
         checkHealth();
         updateHealth(batch);
@@ -86,13 +86,13 @@ public class EnemyCharacter {
             velocity.x = -200;
 
 
-        enemy.x += velocity.x * (1.0/60);
-        enemy.y += velocity.y * (1.0/60);
+        enemy.x += velocity.x * (delta);
+        enemy.y += velocity.y * (delta);
 
 
         if(enemy.y > 0){
-            enemy.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
-            velocity.y += Constants.GRAVITY * (1.0/60);
+            enemy.y += (0.5)*(Constants.GRAVITY)*(delta * delta);
+            velocity.y += Constants.GRAVITY * (delta);
         }
         else
             velocity.y = 0;

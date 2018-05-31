@@ -72,9 +72,9 @@ public class GameScreen implements Screen
         power.renderPower(batch);
 
         gary.updatePower(delta);
-        gary.update(batch);
+        gary.update(batch, delta);
         enemy.updatePower(delta);
-        enemy.update(batch);
+        enemy.update(batch, delta);
         for(Platform p: platforms){
             p.update(batch);
         }

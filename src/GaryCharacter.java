@@ -48,7 +48,7 @@ public class GaryCharacter {
         return gary;
     }
 
-    public void update(SpriteBatch batch){
+    public void update(SpriteBatch batch, float delta){
 
         checkHealth();
         updateHealth(batch);
@@ -81,22 +81,25 @@ public class GaryCharacter {
         else if(gary.x + Constants.GARY_WIDTH > Constants.WORLD_WIDTH)
             velocity.x = -200;
 
+        gary.x += velocity.x * (delta);
+        gary.y += velocity.y * (delta);
 
-        gary.x += velocity.x * (1.0/60);
-        gary.y += velocity.y * (1.0/60);
-
-
-        if(gary.y > 0 ){
-            gary.y += (0.5)*(Constants.GRAVITY)*(1.0/360);
-            velocity.y += Constants.GRAVITY * (1.0/60);
+        for(Platform p: GameScreen.getPlatforms()) {
+            if (velocity.y <= 0 && gary.overlaps(p.getRectangle())) {
+                gary.y -= velocity.y * (delta);
+                velocity.y = 0;
+            }
         }
-        else
+
+        if (gary.y > 0) {
+            //gary.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
+            velocity.y += Constants.GRAVITY * (delta);
+        } else
             velocity.y = 0;
 
-        if(coolDown > 0){
+        if (coolDown > 0) {
             coolDown--;
         }
-
 
     }
 
