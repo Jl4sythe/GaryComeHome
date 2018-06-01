@@ -32,7 +32,7 @@ public class GameOverScreen implements Screen{
         font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
         button = new Texture(Gdx.files.internal("assets/Button.png"));
         //background = new Texture(Gdx.files.internal("assets/"));
-        background = new Texture(Gdx.files.internal("assets/GameOverBackground.jpg"));
+        background = new Texture(Gdx.files.internal("assets/GameOverBackground.png"));
         this.garyWinner = garyWinner;
         this.game = game;
         pos = new Vector2(0,0);
@@ -59,8 +59,8 @@ public class GameOverScreen implements Screen{
             GlyphLayout winnerLayout = new GlyphLayout(font,"The Other Guy Wins!!");
             font.draw(batch, "The Other Guy Wins!!", Constants.WORLD_WIDTH/2 - winnerLayout.width/2, Constants.WORLD_HEIGHT/2 + winnerLayout.height/2 + 200);
         }
-        GlyphLayout layout = new GlyphLayout(font, "GAME OVER FOOLS");
-        font.draw(batch, "GAME OVER FOOLS", Constants.WORLD_WIDTH/2 - layout.width/2,Constants.WORLD_HEIGHT/2 + layout.height/2 + 30);
+//        GlyphLayout layout = new GlyphLayout(font, "GAME OVER FOOLS");
+//        font.draw(batch, "GAME OVER FOOLS", Constants.WORLD_WIDTH/2 - layout.width/2,Constants.WORLD_HEIGHT/2 + layout.height/2 + 30);
         batch.draw(button,Constants.WORLD_WIDTH/2 - 400,Constants.WORLD_HEIGHT/2 - 200,300,100);
         batch.draw(button,Constants.WORLD_WIDTH/2 + 100,Constants.WORLD_HEIGHT/2 - 200,300,100);
         //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);

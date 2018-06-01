@@ -1,6 +1,6 @@
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -81,19 +81,19 @@ public class SelectionScreen implements Screen
             if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 645 && pos.y >= Constants.WORLD_HEIGHT - 190 && pos.y <= Constants.WORLD_HEIGHT - 90)
                 game.setScreen(new LevelOneScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 190 && pos.y <= Constants.WORLD_HEIGHT - 90)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelTwoScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 190 && pos.y <= Constants.WORLD_HEIGHT - 90)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelThreeScreen(game));
             if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 645 && pos.y >= Constants.WORLD_HEIGHT - 350 && pos.y <= Constants.WORLD_HEIGHT - 250)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelFourScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 350 && pos.y <= Constants.WORLD_HEIGHT - 250)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelFiveScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 350 && pos.y <= Constants.WORLD_HEIGHT - 250)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelSixScreen(game));
             if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 645 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelSevenScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new LevelEightScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
                 game.setScreen(new LevelOneScreen(game));
 
