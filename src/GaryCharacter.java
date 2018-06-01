@@ -26,6 +26,7 @@ public class GaryCharacter {
     private double var = 1;
     public static  float time = 0;
     private int loss;
+    private boolean onPlatform = false;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
@@ -60,6 +61,8 @@ public class GaryCharacter {
         checkHealth();
         updateHealth(batch);
 
+        onPlatform = false;
+
         if(facingRight)
             batch.draw(garyTexR, gary.x, gary.y, gary.width, gary.height);
         else if(!facingRight)
@@ -78,11 +81,9 @@ public class GaryCharacter {
         }
         else
             velocity.x = 0;
-
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
             velocity.y = Constants.GARY_JUMP_SPEED;
         }
-
         if(gary.x < 0)
             velocity.x = 200;
         else if(gary.x + Constants.GARY_WIDTH > Constants.WORLD_WIDTH)
@@ -93,12 +94,12 @@ public class GaryCharacter {
 
         for(Platform p: GameScreen.getPlatforms()) {
             if (velocity.y <= 0 && gary.overlaps(p.getRectangle())) {
-                gary.y -= velocity.y * (delta);
+                //gary.y -= velocity.y * (delta);
                 velocity.y = 0;
+                onPlatform = true;
             }
         }
-
-        if (gary.y > 0) {
+        if (gary.y > 0 && !onPlatform) {
             //gary.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
             velocity.y += Constants.GRAVITY * (delta);
         } else
