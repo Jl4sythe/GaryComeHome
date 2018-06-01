@@ -2,11 +2,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 
-public class LevelOneScreen extends GameScreen implements Screen {
+public class LevelThreeScreen extends GameScreen implements Screen {
 
-    public LevelOneScreen(GaryGame game){
+    public LevelThreeScreen(GaryGame game){
         super(game);
-        super.setBackground(new Texture(Gdx.files.internal("assets/LevelOneBackground.png")));
+        super.setBackground(new Texture(Gdx.files.internal("assets/LevelThreeBackground.png")));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 500, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 + 200, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 150, 2 * Constants.WORLD_HEIGHT/3 - 30, 300, 10));

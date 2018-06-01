@@ -4,16 +4,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.*;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import sun.awt.image.GifImageDecoder;
 
 
@@ -57,12 +53,15 @@ public class MainMenu implements Screen {
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
+
         batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
-        batch.draw(word,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
+        //batch.draw(word,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
+        GlyphLayout layout = new GlyphLayout(font, "PLAY");
+        font.draw(batch, "PLAY", Constants.WORLD_WIDTH - layout.width/2 -170,Constants.WORLD_HEIGHT + layout.height/2 - 130);
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
-
-
+        GlyphLayout layout2 = new GlyphLayout(font, "QUIT");
+        font.draw(batch, "QUIT", Constants.WORLD_WIDTH - layout.width/2 -170,Constants.WORLD_HEIGHT + layout.height/2 - 380);
         font.draw(batch, "GARY COME HOME", 100, 100);
 
         batch.end();
