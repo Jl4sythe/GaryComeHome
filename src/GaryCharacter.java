@@ -27,6 +27,7 @@ public class GaryCharacter {
     public static  float time = 0;
     private int loss;
     private boolean onPlatform = false;
+    private Platform currentPlatform;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
@@ -93,13 +94,20 @@ public class GaryCharacter {
         gary.y += velocity.y * (delta);
 
         for(Platform p: GameScreen.getPlatforms()) {
-            if (velocity.y <= 0 && gary.overlaps(p.getRectangle())) {
+            if (velocity.y <= 0 && gary.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.S)) {
                 //gary.y -= velocity.y * (delta);
-                velocity.y = 0;
                 onPlatform = true;
+                currentPlatform = p;
             }
         }
-        if (gary.y > 0 && !onPlatform) {
+
+//        if(onPlatform && gary.y < currentPlatform.getRectangle().y + currentPlatform.getRectangle().getHeight())
+//            onPlatform = false;
+
+        if(onPlatform)
+            velocity.y = 0;
+
+        if (gary.y > 0 && (!onPlatform)) {
             //gary.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
             velocity.y += Constants.GRAVITY * (delta);
         } else
