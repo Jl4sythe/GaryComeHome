@@ -19,4 +19,6 @@ public class Platform {
     public Rectangle getRectangle(){
         return rectangle;
     }
+
+
 }
