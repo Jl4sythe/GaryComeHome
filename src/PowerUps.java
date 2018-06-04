@@ -42,6 +42,29 @@ public class PowerUps
         }
     }
 
+    public void checkPower(float delta, Rectangle gary)
+    {
+        time += delta;
+        for(int i = 0; i < powers.size; i++)
+        {
+            Rectangle filler = powers.get(i).getRectangle();
+            int check = powers.get(i).getCheck();
+
+            filler.y -= Constants.POWER_SPEED;
+
+            if(filler.overlaps(gary))
+            {
+                garyCtr = check;
+                powers.removeIndex(i);
+            }
+
+            if(filler.y + Constants.POWER_SIZE < 0)
+                powers.removeIndex(i);
+        }
+        if(time > (float)(Math.random()*10+10))
+            spawnPower();
+    }
+
     public void checkPower(float delta, Rectangle gary, Rectangle enemy)
     {
         time += delta;

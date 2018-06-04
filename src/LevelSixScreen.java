@@ -6,7 +6,7 @@ public class LevelSixScreen extends GameScreen implements Screen {
 
     public LevelSixScreen(GaryGame game){
         super(game);
-        super.setBackground(new Texture(Gdx.files.internal("assets/LevelOneBackground.jpg")));
+        super.setBackground(new Texture(Gdx.files.internal("assets/LevelSixBackground.png")));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 500, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 + 200, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 150, 2 * Constants.WORLD_HEIGHT/3 - 30, 300, 10));
