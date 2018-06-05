@@ -20,7 +20,7 @@ public class GaryCharacter {
     
     private Texture garyTexR;
     private Texture garyTexL;
-    private Rectangle gary;
+    private static Rectangle gary;
 
     private int coolDown = 0;
     private double var = 1;
@@ -28,6 +28,8 @@ public class GaryCharacter {
     private int loss;
     private boolean onPlatform = false;
     private Platform currentPlatform;
+    public boolean knockBack = false;
+    private float timer = 0;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
@@ -72,15 +74,15 @@ public class GaryCharacter {
         if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
             shoot(batch);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.A) && !knockBack) {
             velocity.x = -Constants.GARY_SPEED;
             facingRight = false;
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.D)){
+        else if(Gdx.input.isKeyPressed(Input.Keys.D) && !knockBack){
             velocity.x = Constants.GARY_SPEED;
             facingRight = true;
         }
-        else
+        else if(!knockBack)
             velocity.x = 0;
         if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
             velocity.y = Constants.GARY_JUMP_SPEED;
@@ -117,6 +119,12 @@ public class GaryCharacter {
             coolDown--;
         }
 
+        if(timer > 0){
+            timer --;
+        }
+
+        if(knockBack && timer == 0)
+            knockBack = false;
     }
 
     public void checkHealth()
@@ -129,6 +137,17 @@ public class GaryCharacter {
                 loss = 60;
                 GameScreen.lasers.remove(i);
                 i--;
+                knockBack = true;
+                if(EnemyCharacter.getEnemy().x < gary.x){
+                    velocity.x = 500;
+                    velocity.y += 300;
+                    timer = 1f * 60;
+                }
+                else if(EnemyCharacter.getEnemy().x > gary.x){
+                    velocity.x = -500;
+                    velocity.y += 300;
+                    timer = 1f * 60;
+                }
             }
         }
     }
@@ -228,5 +247,8 @@ public class GaryCharacter {
 
     }
 
+    public static Rectangle getGary(){
+        return gary;
+    }
 
 }
