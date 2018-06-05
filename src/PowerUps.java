@@ -15,6 +15,8 @@ public class PowerUps
     private Texture redCookie;
     public static int garyCtr;
     public static int enemyCtr;
+    public static float spawnTime;
+    private GaryGame game;
 
     public PowerUps(GaryGame game)
     {
@@ -24,6 +26,8 @@ public class PowerUps
         purpleCookie = new Texture(Gdx.files.internal("assets/purpleCookie.png"));
         greenCookie = new Texture(Gdx.files.internal("assets/greenCookie.png"));
         redCookie = new Texture(Gdx.files.internal("assets/redCookie.png"));
+
+        game = new GaryGame();
     }
 
     public void renderPower(SpriteBatch batch)
@@ -54,14 +58,14 @@ public class PowerUps
 
             if(filler.overlaps(gary))
             {
-                garyCtr = check;
                 powers.removeIndex(i);
+                MinigameScreen.getGame().setScreen(new MinigameGameOverScreen(MinigameScreen.getGame()));
             }
 
             if(filler.y + Constants.POWER_SIZE < 0)
                 powers.removeIndex(i);
         }
-        if(time > (float)(Math.random()*10+10))
+        if(time > (float)(Math.random()*10+spawnTime))
             spawnPower();
     }
 

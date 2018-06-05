@@ -66,7 +66,7 @@ public class MainMenu implements Screen {
 
         batch.end();
 
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+        if(Gdx.input.justTouched())
         {
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();

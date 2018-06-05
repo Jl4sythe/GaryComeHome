@@ -80,6 +80,8 @@ public class GameScreen implements Screen
         }
         updateLasers();
         batch.end();
+
+        PowerUps.spawnTime = 10;
     }
 
     public void updateLasers(){

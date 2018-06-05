@@ -25,8 +25,10 @@ public class MinigameScreen implements Screen
 
     private Music song;
 
-    private GaryCharacter gary;
-    private GaryGame game;
+    private MinigameCharacter gary;
+    private static GaryGame game;
+
+    private static int timer;
 
     public MinigameScreen(GaryGame game) {
         this.game = game;
@@ -36,12 +38,15 @@ public class MinigameScreen implements Screen
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
-        font = new BitmapFont();
+        font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
         renderer = new ShapeRenderer();
         gameBackground = new Texture(Gdx.files.internal("assets/LevelOneBackground.png"));
 
-        gary = new GaryCharacter(game);
+        gary = new MinigameCharacter(game);
         power = new PowerUps(game);
+        timer = 0;
+
+        PowerUps.spawnTime = -0.25f;
 
 
 //        song = Gdx.audio.newMusic(Gdx.files.internal("assets/GaryComeHome.mp3"));
@@ -54,15 +59,17 @@ public class MinigameScreen implements Screen
         Gdx.gl.glClearColor(0,0,.2f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        timer++;
         power.checkPower(delta, gary.getRectangle());
 
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(gameBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
 
-        power.renderPower(batch);
 
-        gary.updatePower(delta);
+        power.renderPower(batch);
+        font.draw(batch, ""+timer, 30, Constants.WORLD_HEIGHT - 30);
+
         gary.update(batch, delta);
 
         batch.end();
@@ -72,8 +79,17 @@ public class MinigameScreen implements Screen
         gameBackground = texture;
     }
 
+    public static GaryGame getGame() {
+        return game;
+    }
+
+    public static int getTimer() {
+        return timer;
+    }
+
     public void resize(int width, int height) {
-        viewport.update(width, height, true);//not sure if it should be true or not tho
+        viewport.update(width, height, true);
+
     }
 
     public void pause() {

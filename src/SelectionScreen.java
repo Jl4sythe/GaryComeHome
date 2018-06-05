@@ -72,7 +72,7 @@ public class SelectionScreen implements Screen
 
         batch.end();
 
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+        if(Gdx.input.isTouched())
         {
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();
