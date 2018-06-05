@@ -75,7 +75,7 @@ public class MainMenu implements Screen {
             if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 180 && pos.y <= Constants.WORLD_HEIGHT - 80)
                 game.setScreen(new SelectionScreen(game));
             if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 430 && pos.y <= Constants.WORLD_HEIGHT - 330)
-                dispose();
+                System.exit(0);
         }
     }
 

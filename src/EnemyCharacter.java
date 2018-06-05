@@ -107,7 +107,7 @@ public class EnemyCharacter {
         enemy.y += velocity.y * (delta);
 
         for(Platform p: GameScreen.getPlatforms()) {
-            if (velocity.y <= 0 && enemy.overlaps(p.getRectangle())) {
+            if (velocity.y <= 0 && enemy.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 //gary.y -= velocity.y * (delta);
                 velocity.y = 0;
                 onPlatform = true;

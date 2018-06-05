@@ -73,7 +73,7 @@ public class GameOverScreen implements Screen{
 
             pos = viewport.unproject(new Vector2(x,y));
             if(pos.x >= Constants.WORLD_WIDTH/2 - 400 && pos.x < Constants.WORLD_WIDTH/2 - 100 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
-                dispose();
+                System.exit(0);
             if(pos.x >= Constants.WORLD_WIDTH/2 + 100 && pos.x < Constants.WORLD_WIDTH/2 + 400 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
                 game.setScreen(new SelectionScreen(game));
         }
