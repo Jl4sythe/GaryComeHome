@@ -22,13 +22,15 @@ public class EnemyCharacter {
     private Texture garyTexL;
     private Texture patTexR;
     private Texture patTexL;
-    private Rectangle enemy;
+    private static Rectangle enemy;
 
     private int coolDown = 0;
     private double var = 1;
     public static float time = 0;
     private int loss;
     public boolean onPlatform;
+    public boolean knockBack = false;
+    private float timer = 0;
 
     public EnemyCharacter(GaryGame game) {
         facingRight = false;
@@ -57,10 +59,6 @@ public class EnemyCharacter {
 
     }
 
-    public Rectangle getRectangle() {
-        return enemy;
-    }
-
     public void update(SpriteBatch batch, float delta) {
 
         checkHealth();
@@ -81,13 +79,13 @@ public class EnemyCharacter {
         }
 
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && !knockBack) {
             velocity.x = -Constants.ENEMY_SPEED;
             facingRight = false;
-        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+        } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !knockBack) {
             velocity.x = Constants.ENEMY_SPEED;
             facingRight = true;
-        } else
+        } else if(!knockBack)
             velocity.x = 0;
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && velocity.y == 0) {
@@ -124,6 +122,13 @@ public class EnemyCharacter {
             coolDown--;
         }
 
+        if(timer > 0){
+            timer --;
+        }
+
+        if(knockBack && timer == 0)
+            knockBack = false;
+
 
     }
 
@@ -137,6 +142,17 @@ public class EnemyCharacter {
                 loss = 60;
                 GameScreen.lasers.remove(i);
                 i--;
+                knockBack = true;
+                if(GaryCharacter.getGary().x < enemy.x){
+                    velocity.x = 500;
+                    velocity.y += 300;
+                    timer = 1f * 60;
+                }
+                else if(GaryCharacter.getGary().x > enemy.x){
+                    velocity.x = -500;
+                    velocity.y += 300;
+                    timer = 1f * 60;
+                }
             }
         }
     }
@@ -208,5 +224,13 @@ public class EnemyCharacter {
             PowerUps.enemyCtr = 0;
         }
 
+    }
+
+    public Rectangle getRectangle() {
+        return enemy;
+    }
+
+    public static Rectangle getEnemy() {
+        return enemy;
     }
 }
