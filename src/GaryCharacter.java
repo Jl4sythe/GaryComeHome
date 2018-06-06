@@ -27,7 +27,6 @@ public class GaryCharacter {
     public static  float time = 0;
     private int loss;
     private boolean onPlatform = false;
-    private Platform currentPlatform;
     public boolean knockBack = false;
     private float timer = 0;
 
@@ -99,7 +98,6 @@ public class GaryCharacter {
             if (velocity.y <= 0 && gary.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.S)) {
                 //gary.y -= velocity.y * (delta);
                 onPlatform = true;
-                currentPlatform = p;
             }
         }
 
@@ -110,8 +108,8 @@ public class GaryCharacter {
             velocity.y = 0;
 
         if (gary.y > 0 && (!onPlatform)) {
-            //gary.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
-            velocity.y += Constants.GRAVITY * (delta);
+            //gary.y += (0.5) * (Constants.GARY_GRAVITY) * (delta * delta);
+            velocity.y += Constants.GARY_GRAVITY * (delta);
         } else
             velocity.y = 0;
 
@@ -203,42 +201,50 @@ public class GaryCharacter {
 
     public void updatePower(float delta) {
 
-        if (PowerUps.garyCtr == 1)
+        if (PowerUps.garyCtr >= 1 && PowerUps.garyCtr <= 20)
         {
             Constants.GARY_JUMP_SPEED = Constants.FAST_JUMP_SPEED;
         }
-        else if(PowerUps.garyCtr == 2)
+        else if(PowerUps.garyCtr >= 21 && PowerUps.garyCtr <= 40)
         {
-            var = .5;
+            var = .25;
         }
-        else if(PowerUps.garyCtr == 3)
+        else if(PowerUps.garyCtr >= 41 && PowerUps.garyCtr <= 60)
         {
             Constants.GARY_SPEED = Constants.CHANGED_SPEED;
         }
-        else if(PowerUps.garyCtr == 4)
+        else if(PowerUps.garyCtr >= 60 && PowerUps.garyCtr <= 80)
         {
             Constants.GARY_JUMP_SPEED = Constants.SLOW_JUMP_SPEED;
+        }
+        else if(PowerUps.garyCtr == 81)
+        {
+            Constants.GARY_GRAVITY = Constants.CHANGED_GRAVITY;
         }
 
         time += delta;
 
         if (time >= Constants.POWER_TIME)
         {
-            if(PowerUps.garyCtr == 1)
+            if(PowerUps.garyCtr >= 1 && PowerUps.garyCtr <= 20)
             {
                 Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
             }
-            else if(PowerUps.garyCtr == 2)
+            else if(PowerUps.garyCtr >= 21 && PowerUps.garyCtr <= 40)
             {
                 var = 1;
             }
-            else if(PowerUps.garyCtr == 3)
+            else if(PowerUps.garyCtr >= 41 && PowerUps.garyCtr <= 60)
             {
                 Constants.GARY_SPEED = Constants.ORIGINAL_SPEED;
             }
-            else if(PowerUps.garyCtr == 4)
+            else if(PowerUps.garyCtr >= 61 && PowerUps.garyCtr <= 80)
             {
                 Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
+            }
+            else if(PowerUps.garyCtr == 81)
+            {
+                Constants.GARY_GRAVITY = Constants.ORIGINAL_GRAVITY;
             }
 
             time = 0;

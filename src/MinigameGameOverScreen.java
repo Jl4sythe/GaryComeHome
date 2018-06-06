@@ -49,8 +49,9 @@ public class MinigameGameOverScreen implements Screen{
         batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
 
             GlyphLayout winnerLayout = new GlyphLayout(font,"FINAL SCORE");
-            font.draw(batch, "FINAL SCORE"+MinigameScreen.getTimer(), Constants.WORLD_WIDTH/2 - winnerLayout.width/2, Constants.WORLD_HEIGHT/2 + winnerLayout.height/2 + 200);
-
+            font.draw(batch, "FINAL SCORE", Constants.WORLD_WIDTH/2 - winnerLayout.width/2, Constants.WORLD_HEIGHT/2 + winnerLayout.height/2 + 200);
+            GlyphLayout winnerLayout2 = new GlyphLayout(font,""+MinigameScreen.getTimer());
+            font.draw(batch, ""+MinigameScreen.getTimer(), Constants.WORLD_WIDTH/2 - winnerLayout2.width/2, Constants.WORLD_HEIGHT/2 + winnerLayout2.height/2 + 150);
 
         batch.draw(button,Constants.WORLD_WIDTH/2 - 400,Constants.WORLD_HEIGHT/2 - 200,300,100);
         batch.draw(button,Constants.WORLD_WIDTH/2 + 100,Constants.WORLD_HEIGHT/2 - 200,300,100);

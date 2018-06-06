@@ -13,6 +13,7 @@ public class PowerUps
     private Texture purpleCookie;
     private Texture greenCookie;
     private Texture redCookie;
+    private Texture finalCookie;
     public static int garyCtr;
     public static int enemyCtr;
     public static float spawnTime;
@@ -26,6 +27,7 @@ public class PowerUps
         purpleCookie = new Texture(Gdx.files.internal("assets/purpleCookie.png"));
         greenCookie = new Texture(Gdx.files.internal("assets/greenCookie.png"));
         redCookie = new Texture(Gdx.files.internal("assets/redCookie.png"));
+        finalCookie = new Texture(Gdx.files.internal("assets/finalCookie.png"));
 
         game = new GaryGame();
     }
@@ -35,14 +37,16 @@ public class PowerUps
         for (Cookie power : powers)
         {
             int val = power.getCheck();
-            if(val == 1)
+            if(val >= 1 && val <= 20)
                 batch.draw(cookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
-            else if(val == 2)
+            else if(val >= 21 && val <= 40)
                 batch.draw(purpleCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
-            else if(val == 3)
+            else if(val >= 41 && val <= 60)
                 batch.draw(greenCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
-            else if(val == 4)
+            else if(val >= 61 && val <= 80)
                 batch.draw(redCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
+            else if(val == 81)
+                batch.draw(finalCookie, power.getRectangle().x, power.getRectangle().y, power.getRectangle().width, power.getRectangle().height);
         }
     }
 
@@ -105,7 +109,7 @@ public class PowerUps
         power.width = Constants.POWER_SIZE;
         power.height = Constants.POWER_SIZE;
 
-        int val = (int)(Math.random()*4+1);
+        int val = (int)(Math.random()*81+1);
         Cookie set = new Cookie(power, val);
 
         powers.add(set);

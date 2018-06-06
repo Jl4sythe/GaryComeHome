@@ -113,8 +113,8 @@ public class EnemyCharacter {
         }
 
         if (enemy.y > 0 && !onPlatform) {
-//            enemy.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
-            velocity.y += Constants.GRAVITY * (delta);
+//            enemy.y += (0.5) * (Constants.ENEMY_GRAVITY) * (delta * delta);
+            velocity.y += Constants.ENEMY_GRAVITY * (delta);
         } else
             velocity.y = 0;
 
@@ -197,27 +197,31 @@ public class EnemyCharacter {
     }
 
     public void updatePower(float delta) {
-        if (PowerUps.enemyCtr == 1) {
+        if (PowerUps.enemyCtr >= 1 && PowerUps.enemyCtr <= 20) {
             Constants.ENEMY_JUMP_SPEED = Constants.FAST_JUMP_SPEED;
-        } else if (PowerUps.enemyCtr == 2) {
+        } else if (PowerUps.enemyCtr >= 21 && PowerUps.enemyCtr <= 40) {
             var = 0.25;
-        } else if (PowerUps.enemyCtr == 3) {
+        } else if (PowerUps.enemyCtr >= 41 && PowerUps.enemyCtr <= 60) {
             Constants.ENEMY_SPEED = Constants.CHANGED_SPEED;
-        } else if (PowerUps.enemyCtr == 4) {
+        } else if (PowerUps.enemyCtr >= 61 && PowerUps.enemyCtr <= 80) {
             Constants.ENEMY_JUMP_SPEED = Constants.SLOW_JUMP_SPEED;
+        } else if (PowerUps.enemyCtr == 81) {
+            Constants.ENEMY_GRAVITY = Constants.CHANGED_GRAVITY;
         }
 
         time += delta;
 
         if (time >= Constants.POWER_TIME) {
-            if (PowerUps.enemyCtr == 1) {
+            if (PowerUps.enemyCtr >= 1 && PowerUps.enemyCtr <= 20) {
                 Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
-            } else if (PowerUps.enemyCtr == 2) {
+            } else if (PowerUps.enemyCtr >= 21 && PowerUps.enemyCtr <= 40) {
                 var = 1;
-            } else if (PowerUps.enemyCtr == 3) {
+            } else if (PowerUps.enemyCtr >= 51 && PowerUps.enemyCtr <= 60) {
                 Constants.ENEMY_SPEED = Constants.ORIGINAL_SPEED;
-            } else if (PowerUps.enemyCtr == 4) {
+            } else if (PowerUps.enemyCtr >= 61 && PowerUps.enemyCtr <= 80) {
                 Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
+            } else if (PowerUps.enemyCtr == 81) {
+                Constants.ENEMY_GRAVITY = Constants.ORIGINAL_GRAVITY;
             }
 
             time = 0;

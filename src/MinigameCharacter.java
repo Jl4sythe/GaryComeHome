@@ -77,7 +77,7 @@ public class MinigameCharacter {
 
 
         if (gary.y > 0) {
-            velocity.y += Constants.GRAVITY * (delta);
+            velocity.y += Constants.GARY_GRAVITY * (delta);
         } else
             velocity.y = 0;
 

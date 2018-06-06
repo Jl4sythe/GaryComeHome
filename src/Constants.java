@@ -4,7 +4,11 @@ public class Constants {
     public final static float WORLD_WIDTH = 960f;
     public final static float WORLD_HEIGHT = 540f;
 
-    public final static float GRAVITY = -600f;
+    public static float GARY_GRAVITY = -600f;
+    public static float ENEMY_GRAVITY = -600f;
+    public final static float CHANGED_GRAVITY = 0f;
+    public final static float ORIGINAL_GRAVITY = -600f;
+
     public static float GARY_JUMP_SPEED = 500;
     public static float ENEMY_JUMP_SPEED = 500;
     public final static float FAST_JUMP_SPEED = 700;
