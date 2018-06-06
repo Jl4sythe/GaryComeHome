@@ -123,7 +123,7 @@ public class GaryCharacter {
             timer --;
         }
 
-        if(knockBack && timer == 0)
+        if(knockBack && timer <= 0)
             knockBack = false;
     }
 

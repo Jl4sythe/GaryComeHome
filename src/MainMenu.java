@@ -61,7 +61,7 @@ public class MainMenu implements Screen {
         font.draw(batch, "PLAY", Constants.WORLD_WIDTH - layout.width/2 -170,Constants.WORLD_HEIGHT + layout.height/2 - 130);
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
         GlyphLayout layout2 = new GlyphLayout(font, "QUIT");
-        font.draw(batch, "QUIT", Constants.WORLD_WIDTH - layout.width/2 -170,Constants.WORLD_HEIGHT + layout.height/2 - 380);
+        font.draw(batch, "QUIT", Constants.WORLD_WIDTH - layout2.width/2 -170,Constants.WORLD_HEIGHT + layout2.height/2 - 380);
         font.draw(batch, "GARY COME HOME", 100, 100);
 
         batch.end();
