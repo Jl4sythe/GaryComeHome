@@ -29,6 +29,7 @@ public class GaryCharacter {
     public boolean knockBack = false;
     private boolean onPlatform = false;
     private float timer = 0;
+    private static boolean flight = false;
 
     public GaryCharacter(GaryGame game) {
         facingRight = true;
@@ -101,6 +102,8 @@ public class GaryCharacter {
             }
         }
 
+//        if(onPlatform && gary.y < currentPlatform.getRectangle().y + currentPlatform.getRectangle().getHeight())
+//            onPlatform = false;
 
         if(onPlatform)
             velocity.y = 0;
@@ -190,12 +193,12 @@ public class GaryCharacter {
     public void  shoot(SpriteBatch batch){
         if(coolDown == 0) {
             if (facingRight) {
-                GameScreen.lasers.add(new Laser(facingRight, gary.x + gary.width + 1, gary.y + gary.height - 15, batch));
-                coolDown = (int)(60*var);
+                GameScreen.lasers.add(new Laser(true, gary.x + gary.width + 1, gary.y + gary.height - 15, batch));
+                coolDown = (int)(60 * var);
             }
             else {
-                GameScreen.lasers.add(new Laser(facingRight, gary.x - Constants.LASER_WIDTH, gary.y + gary.height - 15, batch));
-                coolDown = (int)(60*var);
+                GameScreen.lasers.add(new Laser(false, gary.x - Constants.LASER_WIDTH, gary.y + gary.height - 15, batch));
+                coolDown = (int)(60 * var);
             }
         }
     }
@@ -261,5 +264,7 @@ public class GaryCharacter {
     public static Rectangle getGary(){
         return gary;
     }
+
+    public static void setFlight(boolean canFly){flight = canFly;}
 
 }

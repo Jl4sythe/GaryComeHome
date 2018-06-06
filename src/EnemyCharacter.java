@@ -31,6 +31,7 @@ public class EnemyCharacter {
     public boolean onPlatform;
     public boolean knockBack = false;
     private float timer = 0;
+    private static boolean flight = false;
 
     public EnemyCharacter(GaryGame game) {
         facingRight = false;
@@ -239,4 +240,6 @@ public class EnemyCharacter {
     public static Rectangle getEnemy() {
         return enemy;
     }
+
+    public static void setFlight(boolean canFly){flight = canFly;}
 }
