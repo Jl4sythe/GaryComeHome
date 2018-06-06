@@ -101,8 +101,6 @@ public class GaryCharacter {
             }
         }
 
-//        if(onPlatform && gary.y < currentPlatform.getRectangle().y + currentPlatform.getRectangle().getHeight())
-//            onPlatform = false;
 
         if(onPlatform)
             velocity.y = 0;
