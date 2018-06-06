@@ -26,8 +26,8 @@ public class GaryCharacter {
     private double var = 1;
     public static  float time = 0;
     private int loss;
-    private boolean onPlatform = false;
     public boolean knockBack = false;
+    private boolean onPlatform = false;
     private float timer = 0;
 
     public GaryCharacter(GaryGame game) {
@@ -108,10 +108,14 @@ public class GaryCharacter {
             velocity.y = 0;
 
         if (gary.y > 0 && (!onPlatform)) {
-            //gary.y += (0.5) * (Constants.GARY_GRAVITY) * (delta * delta);
+            //gary.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
             velocity.y += Constants.GARY_GRAVITY * (delta);
-        } else
+        } else if(onPlatform) {
             velocity.y = 0;
+        }else {
+            gary.y = 0;
+            velocity.y = 0;
+        }
 
         if (coolDown > 0) {
             coolDown--;
@@ -129,6 +133,9 @@ public class GaryCharacter {
     {
         if(Gdx.input.isKeyJustPressed(Input.Keys.H))
             health--;
+        if(Gdx.input.isKeyJustPressed(Input.Keys.G))
+            health++;
+
         for(int i = 0; i < GameScreen.lasers.size(); i++){
             if(gary.overlaps(GameScreen.lasers.get(i).getRectangle())) {
                 health--;
