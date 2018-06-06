@@ -135,6 +135,8 @@ public class EnemyCharacter {
     public void checkHealth() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.H))
             health--;
+        if(Gdx.input.isKeyJustPressed(Input.Keys.G))
+            health++;
 
         for (int i = 0; i < GameScreen.lasers.size(); i++) {
             if (enemy.overlaps(GameScreen.lasers.get(i).getRectangle())) {
