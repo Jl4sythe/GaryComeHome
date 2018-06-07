@@ -65,17 +65,25 @@ public class GameOverScreen implements Screen {
         batch.draw(background, 0f, 0f, Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT);
 
         if (garyWinner) {
+            font.getData().setScale(2);
             GlyphLayout winnerLayout = new GlyphLayout(font, "Gary Wins!!");
             font.draw(batch, "Gary Wins!!", Constants.WORLD_WIDTH / 2 - winnerLayout.width / 2, Constants.WORLD_HEIGHT / 2 + winnerLayout.height / 2 + 200);
+            font.getData().setScale(1);
         } else {
+            font.getData().setScale(2);
             GlyphLayout winnerLayout = new GlyphLayout(font, "The Other Guy Wins!!");
             font.draw(batch, "The Other Guy Wins!!", Constants.WORLD_WIDTH / 2 - winnerLayout.width / 2, Constants.WORLD_HEIGHT / 2 + winnerLayout.height / 2 + 200);
+            font.getData().setScale(1);
         }
-//        GlyphLayout layout = new GlyphLayout(font, "GAME OVER FOOLS");
-//        font.draw(batch, "GAME OVER FOOLS", Constants.WORLD_WIDTH/2 - layout.width/2,Constants.WORLD_HEIGHT/2 + layout.height/2 + 30);
+
         batch.draw(button, Constants.WORLD_WIDTH / 2 - 400, Constants.WORLD_HEIGHT / 2 - 200, 300, 100);
         batch.draw(button, Constants.WORLD_WIDTH / 2 + 100, Constants.WORLD_HEIGHT / 2 - 200, 300, 100);
-        //batch.draw(background,0f,0f,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
+
+        GlyphLayout buttonSevenLayout = new GlyphLayout(font, "PLAY AGAIN");
+        font.draw(batch, "PLAY AGAIN", Constants.WORLD_WIDTH - buttonSevenLayout.width/2 -730,Constants.WORLD_HEIGHT + buttonSevenLayout.height/2 - 420);
+        GlyphLayout buttonEightLayout = new GlyphLayout(font, "QUIT");
+        font.draw(batch, "QUIT", Constants.WORLD_WIDTH - buttonEightLayout.width/2 - 230,Constants.WORLD_HEIGHT + buttonEightLayout.height/2 - 420);
+
 
         batch.end();
 

@@ -70,6 +70,27 @@ public class SelectionScreen implements Screen
         batch.draw(button,Constants.WORLD_WIDTH - 630,Constants.WORLD_HEIGHT - 510,300,100);
         batch.draw(button,Constants.WORLD_WIDTH - 315,Constants.WORLD_HEIGHT - 510,300,100);
 
+        GlyphLayout buttonOneLayout = new GlyphLayout(font, "PINEAPPLE");
+        font.draw(batch, "PINEAPPLE", Constants.WORLD_WIDTH - buttonOneLayout.width/2 - 795,Constants.WORLD_HEIGHT + buttonOneLayout.height/2 - 140);
+        GlyphLayout buttonTwoLayout = new GlyphLayout(font, "KRUSTY KRAB");
+        font.draw(batch, "KRUSTY KRAB", Constants.WORLD_WIDTH - buttonTwoLayout.width/2 - 480,Constants.WORLD_HEIGHT + buttonTwoLayout.height/2 - 140);
+        GlyphLayout buttonThreeLayout = new GlyphLayout(font, "ROCK BOTTOM");
+        font.draw(batch, "ROCK BOTTOM", Constants.WORLD_WIDTH - buttonThreeLayout.width/2 - 165,Constants.WORLD_HEIGHT + buttonThreeLayout.height/2 - 140);
+
+        GlyphLayout buttonFourLayout = new GlyphLayout(font, "TREEDOME");
+        font.draw(batch, "TREEDOME", Constants.WORLD_WIDTH - buttonFourLayout.width/2 - 795,Constants.WORLD_HEIGHT + buttonFourLayout.height/2 - 300);
+        GlyphLayout buttonFiveLayout = new GlyphLayout(font, "CHUM BUCKET");
+        font.draw(batch, "CHUM BUCKET", Constants.WORLD_WIDTH - buttonFiveLayout.width/2 - 480,Constants.WORLD_HEIGHT + buttonFiveLayout.height/2 - 300);
+        GlyphLayout buttonSixLayout = new GlyphLayout(font, "WEENIE HUT JR'S");
+        font.draw(batch, "WEENIE HUT JR'S", Constants.WORLD_WIDTH - buttonSixLayout.width/2 - 165,Constants.WORLD_HEIGHT + buttonSixLayout.height/2 - 300);
+
+        GlyphLayout buttonSevenLayout = new GlyphLayout(font, "BARG'N-MART");
+        font.draw(batch, "BARG'N-MART", Constants.WORLD_WIDTH - buttonSevenLayout.width/2 - 795,Constants.WORLD_HEIGHT + buttonSevenLayout.height/2 - 460);
+        GlyphLayout buttonEightLayout = new GlyphLayout(font, "JELLYFISH FIELDS");
+        font.draw(batch, "JELLYFISH FIELDS", Constants.WORLD_WIDTH - buttonEightLayout.width/2 - 480,Constants.WORLD_HEIGHT + buttonEightLayout.height/2 - 460);
+        GlyphLayout buttonNineLayout = new GlyphLayout(font, "MINIGAME");
+        font.draw(batch, "MINIGAME", Constants.WORLD_WIDTH - buttonNineLayout.width/2 - 165,Constants.WORLD_HEIGHT + buttonNineLayout.height/2 - 460);
+
         batch.end();
 
         if(Gdx.input.justTouched())

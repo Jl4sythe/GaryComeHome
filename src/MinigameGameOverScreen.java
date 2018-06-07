@@ -56,6 +56,11 @@ public class MinigameGameOverScreen implements Screen{
         batch.draw(button,Constants.WORLD_WIDTH/2 - 400,Constants.WORLD_HEIGHT/2 - 200,300,100);
         batch.draw(button,Constants.WORLD_WIDTH/2 + 100,Constants.WORLD_HEIGHT/2 - 200,300,100);
 
+        GlyphLayout buttonSevenLayout = new GlyphLayout(font, "PLAY AGAIN");
+        font.draw(batch, "PLAY AGAIN", Constants.WORLD_WIDTH - buttonSevenLayout.width/2 -730,Constants.WORLD_HEIGHT + buttonSevenLayout.height/2 - 420);
+        GlyphLayout buttonEightLayout = new GlyphLayout(font, "QUIT");
+        font.draw(batch, "QUIT", Constants.WORLD_WIDTH - buttonEightLayout.width/2 - 230,Constants.WORLD_HEIGHT + buttonEightLayout.height/2 - 420);
+
         batch.end();
 
         if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
@@ -64,9 +69,9 @@ public class MinigameGameOverScreen implements Screen{
 
             pos = viewport.unproject(new Vector2(x,y));
             if(pos.x >= Constants.WORLD_WIDTH/2 - 400 && pos.x < Constants.WORLD_WIDTH/2 - 100 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
-                System.exit(0);
-            if(pos.x >= Constants.WORLD_WIDTH/2 + 100 && pos.x < Constants.WORLD_WIDTH/2 + 400 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
                 game.setScreen(new SelectionScreen(game));
+            if(pos.x >= Constants.WORLD_WIDTH/2 + 100 && pos.x < Constants.WORLD_WIDTH/2 + 400 && pos.y >= Constants.WORLD_HEIGHT/2 - 200 && pos.y <= Constants.WORLD_HEIGHT/2 - 100)
+                System.exit(0);
         }
     }
 
