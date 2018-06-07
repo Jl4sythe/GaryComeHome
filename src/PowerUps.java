@@ -97,7 +97,7 @@ public class PowerUps
             if(filler.y + Constants.POWER_SIZE < 0)
                 powers.removeIndex(i);
         }
-        if(time > (float)(Math.random()*10)+spawnTime)
+        if(time > (float)(Math.random()*10))
             spawnPower();
     }
 

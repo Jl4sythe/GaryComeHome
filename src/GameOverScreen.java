@@ -37,6 +37,17 @@ public class GameOverScreen implements Screen {
         this.game = game;
         pos = new Vector2(0, 0);
 
+        Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
+        Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
+        GaryCharacter.setVar(1);
+        EnemyCharacter.setVar(1);
+        Constants.GARY_SPEED = Constants.ORIGINAL_SPEED;
+        Constants.ENEMY_SPEED = Constants.ORIGINAL_SPEED;
+        Constants.GARY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
+        Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
+        GaryCharacter.setFlight(false);
+        EnemyCharacter.setFlight(false);
+
         GameScreen.getPlatforms().clear();
     }
 

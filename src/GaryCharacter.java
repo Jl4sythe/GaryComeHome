@@ -23,7 +23,7 @@ public class GaryCharacter {
     private static Rectangle gary;
 
     private int coolDown = 0;
-    private double var = 1;
+    private static double var = 1;
     public static  float time = 0;
     private int loss;
     public boolean knockBack = false;
@@ -84,7 +84,7 @@ public class GaryCharacter {
         }
         else if(!knockBack)
             velocity.x = 0;
-        if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W) && velocity.y == 0 && !flight){
             velocity.y = Constants.GARY_JUMP_SPEED;
         }
         if(gary.x < 0)
@@ -102,18 +102,20 @@ public class GaryCharacter {
             }
         }
 
-//        if(onPlatform && gary.y < currentPlatform.getRectangle().y + currentPlatform.getRectangle().getHeight())
-//            onPlatform = false;
-
         if(onPlatform)
             velocity.y = 0;
 
-        if (gary.y > 0 && (!onPlatform)) {
-            //gary.y += (0.5) * (Constants.GRAVITY) * (delta * delta);
-            velocity.y += Constants.GARY_GRAVITY * (delta);
-        } else if(onPlatform) {
+        if (gary.y > 0 && (!onPlatform) && !flight) {
+            velocity.y += Constants.GRAVITY * (delta);
+        } else if(onPlatform && !flight) {
             velocity.y = 0;
-        }else {
+        }else if(flight && Gdx.input.isKeyPressed(Input.Keys.W)){
+            velocity.y = Constants.GARY_SPEED;
+        }else if(flight && Gdx.input.isKeyPressed(Input.Keys.S) && gary.y > 0) {
+            velocity.y = -Constants.GARY_SPEED;
+        }else if(flight){
+            velocity.y = 0;
+        } else{
             gary.y = 0;
             velocity.y = 0;
         }
@@ -227,7 +229,7 @@ public class GaryCharacter {
         }
         else if(PowerUps.garyCtr == 81)
         {
-            Constants.GARY_GRAVITY = Constants.CHANGED_GRAVITY;
+            flight = true;
         }
 
         time += delta;
@@ -252,7 +254,7 @@ public class GaryCharacter {
             }
             else if(PowerUps.garyCtr == 81)
             {
-                Constants.GARY_GRAVITY = Constants.ORIGINAL_GRAVITY;
+                flight = false;
             }
 
             time = 0;
@@ -265,6 +267,11 @@ public class GaryCharacter {
         return gary;
     }
 
-    public static void setFlight(boolean canFly){flight = canFly;}
+    public static void setVar(double var) {
+        GaryCharacter.var = var;
+    }
 
+    public static void setFlight(boolean flight) {
+        GaryCharacter.flight = flight;
+    }
 }

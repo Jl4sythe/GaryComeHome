@@ -25,7 +25,7 @@ public class EnemyCharacter {
     private static Rectangle enemy;
 
     private int coolDown = 0;
-    private double var = 1;
+    private static double var = 1;
     public static float time = 0;
     private int loss;
     public boolean onPlatform;
@@ -89,7 +89,7 @@ public class EnemyCharacter {
         } else if(!knockBack)
             velocity.x = 0;
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && velocity.y == 0) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && velocity.y == 0 && !flight) {
             velocity.y = Constants.ENEMY_JUMP_SPEED;
         }
 
@@ -113,11 +113,20 @@ public class EnemyCharacter {
             }
         }
 
-        if (enemy.y > 0 && !onPlatform) {
-//            enemy.y += (0.5) * (Constants.ENEMY_GRAVITY) * (delta * delta);
-            velocity.y += Constants.ENEMY_GRAVITY * (delta);
-        } else
+        if (enemy.y > 0 && !onPlatform && !flight) {
+            velocity.y += Constants.GRAVITY * (delta);
+        }else if(onPlatform && !flight) {
             velocity.y = 0;
+        }else if(flight && Gdx.input.isKeyPressed(Input.Keys.UP)){
+            velocity.y = Constants.GARY_SPEED;
+        }else if(flight && Gdx.input.isKeyPressed(Input.Keys.DOWN) && enemy.y > 0) {
+            velocity.y = -Constants.GARY_SPEED;
+        }else if(flight){
+            velocity.y = 0;
+        } else{
+            enemy.y = 0;
+            velocity.y = 0;
+        }
 
         if (coolDown > 0) {
             coolDown--;
@@ -209,7 +218,7 @@ public class EnemyCharacter {
         } else if (PowerUps.enemyCtr >= 61 && PowerUps.enemyCtr <= 80) {
             Constants.ENEMY_JUMP_SPEED = Constants.SLOW_JUMP_SPEED;
         } else if (PowerUps.enemyCtr == 81) {
-            Constants.ENEMY_GRAVITY = Constants.CHANGED_GRAVITY;
+            flight = true;
         }
 
         time += delta;
@@ -224,7 +233,7 @@ public class EnemyCharacter {
             } else if (PowerUps.enemyCtr >= 61 && PowerUps.enemyCtr <= 80) {
                 Constants.ENEMY_JUMP_SPEED = Constants.ORIGINAL_JUMP_SPEED;
             } else if (PowerUps.enemyCtr == 81) {
-                Constants.ENEMY_GRAVITY = Constants.ORIGINAL_GRAVITY;
+                flight = false;
             }
 
             time = 0;
@@ -240,6 +249,12 @@ public class EnemyCharacter {
     public static Rectangle getEnemy() {
         return enemy;
     }
+    
+    public static void setVar(double var) {
+        EnemyCharacter.var = var;
+    }
 
-    public static void setFlight(boolean canFly){flight = canFly;}
+    public static void setFlight(boolean flight) {
+        EnemyCharacter.flight = flight;
+    }
 }
