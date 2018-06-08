@@ -12,12 +12,15 @@ public class Platform {
         tex = new Texture(Gdx.files.internal("assets/platform.png"));
     }
 
-    public void update(SpriteBatch batch){
+    public void update(SpriteBatch batch,float delta){
         batch.draw(tex, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
     }
 
     public Rectangle getRectangle(){
         return rectangle;
+    }
+    public void updateX(float x){
+        rectangle.x += x;
     }
 
 

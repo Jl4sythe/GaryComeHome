@@ -7,9 +7,8 @@ public class LevelThreeScreen extends GameScreen implements Screen {
     public LevelThreeScreen(GaryGame game){
         super(game);
         super.setBackground(new Texture(Gdx.files.internal("assets/LevelThreeBackground.png")));
-        super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 500, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
-        super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 + 200, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
-        super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 150, 2 * Constants.WORLD_HEIGHT/3 - 30, 300, 10));
+        super.addPlatform(new MovingPlatform(1, Constants.WORLD_HEIGHT/3 - 30, 300, 10, 200));
+        super.addPlatform(new MovingPlatform(Constants.WORLD_WIDTH-300,2 *Constants.WORLD_HEIGHT/3 - 30, 300, 10, -200));
     }
 
     @Override

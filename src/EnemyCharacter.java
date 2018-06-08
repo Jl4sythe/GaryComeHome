@@ -32,6 +32,7 @@ public class EnemyCharacter {
     public boolean knockBack = false;
     private float timer = 0;
     private static boolean flight = false;
+    private Platform currentPlatform;
 
     public EnemyCharacter(GaryGame game) {
         facingRight = false;
@@ -81,13 +82,26 @@ public class EnemyCharacter {
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && !knockBack) {
-            velocity.x = -Constants.ENEMY_SPEED;
+            if (currentPlatform != null) {
+                if (currentPlatform instanceof MovingPlatform)
+                    velocity.x = -Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            } else
+                velocity.x = -Constants.ENEMY_SPEED;
             facingRight = false;
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !knockBack) {
-            velocity.x = Constants.ENEMY_SPEED;
+            if (currentPlatform != null) {
+                if (currentPlatform instanceof MovingPlatform)
+                    velocity.x = Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            } else
+                velocity.x = Constants.ENEMY_SPEED;
             facingRight = true;
-        } else if(!knockBack)
-            velocity.x = 0;
+        } else if(!knockBack) {
+            if (currentPlatform != null) {
+                if (currentPlatform instanceof MovingPlatform)
+                    velocity.x = ((MovingPlatform) currentPlatform).getVelocity();
+            } else
+                velocity.x = 0;
+        }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && velocity.y == 0 && !flight) {
             velocity.y = Constants.ENEMY_JUMP_SPEED;
@@ -105,11 +119,13 @@ public class EnemyCharacter {
         enemy.x += velocity.x * (delta);
         enemy.y += velocity.y * (delta);
 
+        currentPlatform = null;
         for(Platform p: GameScreen.getPlatforms()) {
             if (velocity.y <= 0 && enemy.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 //gary.y -= velocity.y * (delta);
                 velocity.y = 0;
                 onPlatform = true;
+                currentPlatform = p;
             }
         }
 
