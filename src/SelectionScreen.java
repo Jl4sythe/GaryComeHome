@@ -71,6 +71,8 @@ public class SelectionScreen implements Screen
         batch.draw(button,Constants.WORLD_WIDTH - 630,Constants.WORLD_HEIGHT - 510,300,100);
         batch.draw(button,Constants.WORLD_WIDTH - 315,Constants.WORLD_HEIGHT - 510,300,100);
 
+        batch.draw(button,Constants.WORLD_WIDTH - 945,Constants.WORLD_HEIGHT/2 +210,120,40);
+
 
         int x = Gdx.input.getX();
         int y = Gdx.input.getY();
@@ -94,6 +96,8 @@ public class SelectionScreen implements Screen
             batch.draw(button2,Constants.WORLD_WIDTH - 630,Constants.WORLD_HEIGHT - 510,300,100);
         else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
             batch.draw(button2,Constants.WORLD_WIDTH - 315,Constants.WORLD_HEIGHT - 510,300,100);
+        else if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 825 && pos.y >= Constants.WORLD_HEIGHT/2 + 210 && pos.y <= Constants.WORLD_HEIGHT/2 +250)
+            batch.draw(button2,Constants.WORLD_WIDTH - 945,Constants.WORLD_HEIGHT/2 +210,120,40);
 
 
         GlyphLayout buttonOneLayout = new GlyphLayout(font, "PINEAPPLE");
@@ -116,6 +120,9 @@ public class SelectionScreen implements Screen
         font.draw(batch, "JELLYFISH FIELDS", Constants.WORLD_WIDTH - buttonEightLayout.width/2 - 480,Constants.WORLD_HEIGHT + buttonEightLayout.height/2 - 460);
         GlyphLayout buttonNineLayout = new GlyphLayout(font, "MINIGAMES");
         font.draw(batch, "MINIGAMES", Constants.WORLD_WIDTH - buttonNineLayout.width/2 - 165,Constants.WORLD_HEIGHT + buttonNineLayout.height/2 - 460);
+
+        GlyphLayout backLayout = new GlyphLayout(font, "BACK");
+        font.draw(batch, "BACK", Constants.WORLD_WIDTH - backLayout.width/2 - 885,Constants.WORLD_HEIGHT + backLayout.height/2 - 40);
 
 
         batch.end();
@@ -145,6 +152,9 @@ public class SelectionScreen implements Screen
                 game.setScreen(new LevelEightScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
                 game.setScreen(new MinigameSelectionScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 825 && pos.y >= Constants.WORLD_HEIGHT/2 + 210 && pos.y <= Constants.WORLD_HEIGHT/2 +250)
+                game.setScreen(new MainMenu(game));
+
 
             GaryCharacter.time = Constants.POWER_TIME;
             EnemyCharacter.time = Constants.POWER_TIME;
