@@ -144,7 +144,7 @@ public class SelectionScreen implements Screen
             else if(pos.x >= Constants.WORLD_WIDTH - 630 && pos.x < Constants.WORLD_WIDTH - 330 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
                 game.setScreen(new LevelEightScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 315 && pos.x < Constants.WORLD_WIDTH - 15 && pos.y >= Constants.WORLD_HEIGHT - 510 && pos.y <= Constants.WORLD_HEIGHT - 410)
-                game.setScreen(new MinigameScreen(game));
+                game.setScreen(new MinigameSelectionScreen(game));
 
             GaryCharacter.time = Constants.POWER_TIME;
             EnemyCharacter.time = Constants.POWER_TIME;
