@@ -60,6 +60,8 @@ public class MinigameSelectionScreen implements Screen {
         batch.draw(button, Constants.WORLD_WIDTH / 2 - 400, Constants.WORLD_HEIGHT / 2 - 50, 300, 100);
         batch.draw(button, Constants.WORLD_WIDTH / 2 + 100, Constants.WORLD_HEIGHT / 2 - 50, 300, 100);
 
+        batch.draw(button,Constants.WORLD_WIDTH - 945,Constants.WORLD_HEIGHT/2 +210,120,40);
+
         int x = Gdx.input.getX();
         int y = Gdx.input.getY();
         pos = viewport.unproject(new Vector2(x, y));
@@ -68,11 +70,16 @@ public class MinigameSelectionScreen implements Screen {
             batch.draw(button2, Constants.WORLD_WIDTH / 2 - 400, Constants.WORLD_HEIGHT / 2 - 50, 300, 100);
         else if(pos.x >= Constants.WORLD_WIDTH - 360 && pos.x < Constants.WORLD_WIDTH - 60 && pos.y >= Constants.WORLD_HEIGHT - 320 && pos.y <= Constants.WORLD_HEIGHT - 220)
             batch.draw(button2, Constants.WORLD_WIDTH / 2 + 100, Constants.WORLD_HEIGHT / 2 - 50, 300, 100);
+        else if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 825 && pos.y >= Constants.WORLD_HEIGHT/2 + 210 && pos.y <= Constants.WORLD_HEIGHT/2 +250)
+            batch.draw(button2,Constants.WORLD_WIDTH - 945,Constants.WORLD_HEIGHT/2 +210,120,40);
 
         GlyphLayout buttonSevenLayout = new GlyphLayout(font, "TIMER GAME");
         font.draw(batch, "TIMER GAME", Constants.WORLD_WIDTH - buttonSevenLayout.width/2 -730,Constants.WORLD_HEIGHT + buttonSevenLayout.height/2 - 270);
         GlyphLayout buttonEightLayout = new GlyphLayout(font, "DIRTY BUBBLE");
         font.draw(batch, "DIRTY BUBBLE", Constants.WORLD_WIDTH - buttonEightLayout.width/2 - 230,Constants.WORLD_HEIGHT + buttonEightLayout.height/2 - 270);
+        GlyphLayout backLayout = new GlyphLayout(font, "BACK");
+        font.draw(batch, "BACK", Constants.WORLD_WIDTH - backLayout.width/2 - 885,Constants.WORLD_HEIGHT + backLayout.height/2 - 40);
+
 
         batch.end();
 
@@ -86,6 +93,8 @@ public class MinigameSelectionScreen implements Screen {
                 game.setScreen(new MinigameScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 360 && pos.x < Constants.WORLD_WIDTH - 60 && pos.y >= Constants.WORLD_HEIGHT - 320 && pos.y <= Constants.WORLD_HEIGHT - 220)
                 game.setScreen(new MinigameTwoScreen(game));
+            else if(pos.x >= Constants.WORLD_WIDTH - 945 && pos.x < Constants.WORLD_WIDTH - 825 && pos.y >= Constants.WORLD_HEIGHT/2 + 210 && pos.y <= Constants.WORLD_HEIGHT/2 +250)
+                game.setScreen(new SelectionScreen(game));
         }
     }
 

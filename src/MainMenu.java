@@ -72,7 +72,7 @@ public class MainMenu implements Screen {
         font.draw(batch, "PLAY", Constants.WORLD_WIDTH - layout.width/2 -170,Constants.WORLD_HEIGHT + layout.height/2 - 130);
         GlyphLayout layout2 = new GlyphLayout(font, "QUIT");
         font.draw(batch, "QUIT", Constants.WORLD_WIDTH - layout2.width/2 -170,Constants.WORLD_HEIGHT + layout2.height/2 - 380);
-        font.draw(batch, "GARY COME HOME", 100, 100);
+        font.draw(batch, "GARY SMASH BROS.", 100, 100);
 
         batch.end();
 
