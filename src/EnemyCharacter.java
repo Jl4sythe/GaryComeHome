@@ -82,23 +82,20 @@ public class EnemyCharacter {
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && !knockBack) {
-            if (currentPlatform != null) {
-                if (currentPlatform instanceof MovingPlatform)
-                    velocity.x = -Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof MovingPlatform) {
+                velocity.x = -Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = -Constants.ENEMY_SPEED;
             facingRight = false;
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !knockBack) {
-            if (currentPlatform != null) {
-                if (currentPlatform instanceof MovingPlatform)
+            if (currentPlatform instanceof MovingPlatform) {
                     velocity.x = Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = Constants.ENEMY_SPEED;
             facingRight = true;
         } else if(!knockBack) {
-            if (currentPlatform != null) {
-                if (currentPlatform instanceof MovingPlatform)
-                    velocity.x = ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof MovingPlatform) {
+                velocity.x = ((MovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = 0;
         }

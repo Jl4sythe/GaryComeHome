@@ -76,23 +76,20 @@ public class GaryCharacter {
             shoot(batch);
 
         if (Gdx.input.isKeyPressed(Input.Keys.A) && !knockBack) {
-            if (currentPlatform != null) {
-                if (currentPlatform instanceof MovingPlatform)
-                    velocity.x = -Constants.GARY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof MovingPlatform) {
+                velocity.x = -Constants.GARY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = -Constants.GARY_SPEED;
             facingRight = false;
         } else if (Gdx.input.isKeyPressed(Input.Keys.D) && !knockBack) {
-            if (currentPlatform != null) {
-                if (currentPlatform instanceof MovingPlatform)
-                    velocity.x = Constants.GARY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof MovingPlatform) {
+                velocity.x = Constants.GARY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = Constants.GARY_SPEED;
             facingRight = true;
         } else if (!knockBack) {
-            if (currentPlatform != null) {
-                if (currentPlatform instanceof MovingPlatform)
-                    velocity.x =((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof MovingPlatform) {
+                velocity.x =((MovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x =0;
         }
