@@ -85,7 +85,7 @@ public class MinigameSelectionScreen implements Screen {
             if(pos.x >= Constants.WORLD_WIDTH - 880 && pos.x < Constants.WORLD_WIDTH - 580 && pos.y >= Constants.WORLD_HEIGHT - 320 && pos.y <= Constants.WORLD_HEIGHT - 220)
                 game.setScreen(new MinigameScreen(game));
             else if(pos.x >= Constants.WORLD_WIDTH - 360 && pos.x < Constants.WORLD_WIDTH - 60 && pos.y >= Constants.WORLD_HEIGHT - 320 && pos.y <= Constants.WORLD_HEIGHT - 220)
-                game.setScreen(new LevelOneScreen(game));
+                game.setScreen(new MinigameTwoScreen(game));
         }
     }
 

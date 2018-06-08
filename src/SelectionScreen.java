@@ -114,8 +114,8 @@ public class SelectionScreen implements Screen
         font.draw(batch, "BARG'N-MART", Constants.WORLD_WIDTH - buttonSevenLayout.width/2 - 795,Constants.WORLD_HEIGHT + buttonSevenLayout.height/2 - 460);
         GlyphLayout buttonEightLayout = new GlyphLayout(font, "JELLYFISH FIELDS");
         font.draw(batch, "JELLYFISH FIELDS", Constants.WORLD_WIDTH - buttonEightLayout.width/2 - 480,Constants.WORLD_HEIGHT + buttonEightLayout.height/2 - 460);
-        GlyphLayout buttonNineLayout = new GlyphLayout(font, "MINIGAME");
-        font.draw(batch, "MINIGAME", Constants.WORLD_WIDTH - buttonNineLayout.width/2 - 165,Constants.WORLD_HEIGHT + buttonNineLayout.height/2 - 460);
+        GlyphLayout buttonNineLayout = new GlyphLayout(font, "MINIGAMES");
+        font.draw(batch, "MINIGAMES", Constants.WORLD_WIDTH - buttonNineLayout.width/2 - 165,Constants.WORLD_HEIGHT + buttonNineLayout.height/2 - 460);
 
 
         batch.end();
