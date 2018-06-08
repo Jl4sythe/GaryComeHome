@@ -21,6 +21,7 @@ public class MainMenu implements Screen {
     private Texture menuBackground;
     private ShapeRenderer renderer;
     private Texture button;
+    private Texture button2;
     private Texture word; 
     private Vector2 pos;
 
@@ -40,6 +41,7 @@ public class MainMenu implements Screen {
         font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
         renderer = new ShapeRenderer();
         button = new Texture(Gdx.files.internal("assets/Button.png"));
+        button2 = new Texture(Gdx.files.internal("assets/ButtonState2.png"));
         word = new Texture(Gdx.files.internal("assets/play word.png"));
         menuBackground = new Texture(Gdx.files.internal("assets/menuBackground.jpg"));
         pos = new Vector2(0,0);
@@ -56,10 +58,18 @@ public class MainMenu implements Screen {
 
         batch.draw(menuBackground,0,0,Constants.WORLD_WIDTH,Constants.WORLD_HEIGHT);
         batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
-        //batch.draw(word,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
+        batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
+
+        int x = Gdx.input.getX();
+        int y = Gdx.input.getY();
+        pos = viewport.unproject(new Vector2(x,y));
+        if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 180 && pos.y <= Constants.WORLD_HEIGHT - 80)
+            batch.draw(button2,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 180,300,100);
+        if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 430 && pos.y <= Constants.WORLD_HEIGHT - 330)
+            batch.draw(button2,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
+
         GlyphLayout layout = new GlyphLayout(font, "PLAY");
         font.draw(batch, "PLAY", Constants.WORLD_WIDTH - layout.width/2 -170,Constants.WORLD_HEIGHT + layout.height/2 - 130);
-        batch.draw(button,Constants.WORLD_WIDTH - 320,Constants.WORLD_HEIGHT - 430,300,100);
         GlyphLayout layout2 = new GlyphLayout(font, "QUIT");
         font.draw(batch, "QUIT", Constants.WORLD_WIDTH - layout2.width/2 -170,Constants.WORLD_HEIGHT + layout2.height/2 - 380);
         font.draw(batch, "GARY COME HOME", 100, 100);
@@ -68,8 +78,8 @@ public class MainMenu implements Screen {
 
         if(Gdx.input.justTouched())
         {
-            int x = Gdx.input.getX();
-            int y = Gdx.input.getY();
+            x = Gdx.input.getX();
+            y = Gdx.input.getY();
 
             pos = viewport.unproject(new Vector2(x,y));
             if(pos.x >= Constants.WORLD_WIDTH - 320 && pos.x < Constants.WORLD_WIDTH - 20 && pos.y >= Constants.WORLD_HEIGHT - 180 && pos.y <= Constants.WORLD_HEIGHT - 80)

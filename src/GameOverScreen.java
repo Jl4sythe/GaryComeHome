@@ -18,6 +18,7 @@ public class GameOverScreen implements Screen {
     private BitmapFont font;
     private Texture background;
     private Texture button;
+    private Texture button2;
 
     private Vector2 pos;
 
@@ -31,6 +32,7 @@ public class GameOverScreen implements Screen {
         batch = new SpriteBatch();
         font = new BitmapFont(Gdx.files.internal("assets/KarbyParty.fnt"));
         button = new Texture(Gdx.files.internal("assets/Button.png"));
+        button2 = new Texture(Gdx.files.internal("assets/ButtonState2.png"));
         //background = new Texture(Gdx.files.internal("assets/"));
         background = new Texture(Gdx.files.internal("assets/GameOverBackground.png"));
         this.garyWinner = garyWinner;
@@ -79,6 +81,14 @@ public class GameOverScreen implements Screen {
         batch.draw(button, Constants.WORLD_WIDTH / 2 - 400, Constants.WORLD_HEIGHT / 2 - 200, 300, 100);
         batch.draw(button, Constants.WORLD_WIDTH / 2 + 100, Constants.WORLD_HEIGHT / 2 - 200, 300, 100);
 
+        int x = Gdx.input.getX();
+        int y = Gdx.input.getY();
+        pos = viewport.unproject(new Vector2(x, y));
+        if (pos.x >= Constants.WORLD_WIDTH / 2 - 400 && pos.x < Constants.WORLD_WIDTH / 2 - 100 && pos.y >= Constants.WORLD_HEIGHT / 2 - 200 && pos.y <= Constants.WORLD_HEIGHT / 2 - 100)
+            batch.draw(button2, Constants.WORLD_WIDTH / 2 - 400, Constants.WORLD_HEIGHT / 2 - 200, 300, 100);
+        if (pos.x >= Constants.WORLD_WIDTH / 2 + 100 && pos.x < Constants.WORLD_WIDTH / 2 + 400 && pos.y >= Constants.WORLD_HEIGHT / 2 - 200 && pos.y <= Constants.WORLD_HEIGHT / 2 - 100)
+            batch.draw(button2, Constants.WORLD_WIDTH / 2 + 100, Constants.WORLD_HEIGHT / 2 - 200, 300, 100);
+
         GlyphLayout buttonSevenLayout = new GlyphLayout(font, "PLAY AGAIN");
         font.draw(batch, "PLAY AGAIN", Constants.WORLD_WIDTH - buttonSevenLayout.width/2 -730,Constants.WORLD_HEIGHT + buttonSevenLayout.height/2 - 420);
         GlyphLayout buttonEightLayout = new GlyphLayout(font, "QUIT");
@@ -88,8 +98,8 @@ public class GameOverScreen implements Screen {
         batch.end();
 
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            int x = Gdx.input.getX();
-            int y = Gdx.input.getY();
+            x = Gdx.input.getX();
+            y = Gdx.input.getY();
 
             pos = viewport.unproject(new Vector2(x, y));
             if (pos.x >= Constants.WORLD_WIDTH / 2 - 400 && pos.x < Constants.WORLD_WIDTH / 2 - 100 && pos.y >= Constants.WORLD_HEIGHT / 2 - 200 && pos.y <= Constants.WORLD_HEIGHT / 2 - 100)
