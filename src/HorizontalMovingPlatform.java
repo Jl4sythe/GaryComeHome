@@ -1,8 +1,8 @@
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class MovingPlatform extends Platform {
+public class HorizontalMovingPlatform extends Platform {
     private int velocity;
-    public MovingPlatform(float x, float y, float width, float height, int velocity){
+    public HorizontalMovingPlatform(float x, float y, float width, float height, int velocity){
         super(x,y,width,height);
         this.velocity = velocity;
     }

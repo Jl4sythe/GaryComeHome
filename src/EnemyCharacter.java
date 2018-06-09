@@ -2,7 +2,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -82,20 +81,20 @@ public class EnemyCharacter {
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && !knockBack) {
-            if (currentPlatform instanceof MovingPlatform) {
-                velocity.x = -Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof HorizontalMovingPlatform) {
+                velocity.x = -Constants.ENEMY_SPEED + ((HorizontalMovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = -Constants.ENEMY_SPEED;
             facingRight = false;
         } else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && !knockBack) {
-            if (currentPlatform instanceof MovingPlatform) {
-                    velocity.x = Constants.ENEMY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof HorizontalMovingPlatform) {
+                    velocity.x = Constants.ENEMY_SPEED + ((HorizontalMovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = Constants.ENEMY_SPEED;
             facingRight = true;
         } else if(!knockBack) {
-            if (currentPlatform instanceof MovingPlatform) {
-                velocity.x = ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof HorizontalMovingPlatform) {
+                velocity.x = ((HorizontalMovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = 0;
         }
@@ -120,10 +119,17 @@ public class EnemyCharacter {
         for(Platform p: GameScreen.getPlatforms()) {
             if (velocity.y <= 0 && enemy.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
                 //gary.y -= velocity.y * (delta);
-                velocity.y = 0;
                 onPlatform = true;
                 currentPlatform = p;
             }
+        }
+
+        if(onPlatform){
+            velocity.y = 0;
+            if(currentPlatform instanceof  VerticalMovingPlatform && ((VerticalMovingPlatform) currentPlatform).getVelocity() > 0)
+                enemy.y += ((VerticalMovingPlatform) currentPlatform).getVelocity() * delta;
+            else if(currentPlatform instanceof  VerticalMovingPlatform && ((VerticalMovingPlatform) currentPlatform).getVelocity() < 0 && enemy.y > 0)
+                enemy.y += ((VerticalMovingPlatform) currentPlatform).getVelocity() * delta;
         }
 
         if (enemy.y > 0 && !onPlatform && !flight) {

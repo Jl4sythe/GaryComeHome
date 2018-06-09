@@ -22,6 +22,9 @@ public class Platform {
     public void updateX(float x){
         rectangle.x += x;
     }
+    public void updateY(float y){
+        rectangle.y += y;
+    }
 
 
 }

@@ -2,7 +2,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -69,27 +68,27 @@ public class GaryCharacter {
 
         if (facingRight)
             batch.draw(garyTexR, gary.x, gary.y, gary.width, gary.height);
-        else if (!facingRight)
+        else
             batch.draw(garyTexL, gary.x, gary.y, gary.width, gary.height);
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
             shoot(batch);
 
         if (Gdx.input.isKeyPressed(Input.Keys.A) && !knockBack) {
-            if (currentPlatform instanceof MovingPlatform) {
-                velocity.x = -Constants.GARY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof HorizontalMovingPlatform) {
+                velocity.x = -Constants.GARY_SPEED + ((HorizontalMovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = -Constants.GARY_SPEED;
             facingRight = false;
         } else if (Gdx.input.isKeyPressed(Input.Keys.D) && !knockBack) {
-            if (currentPlatform instanceof MovingPlatform) {
-                velocity.x = Constants.GARY_SPEED + ((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof HorizontalMovingPlatform) {
+                velocity.x = Constants.GARY_SPEED + ((HorizontalMovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x = Constants.GARY_SPEED;
             facingRight = true;
         } else if (!knockBack) {
-            if (currentPlatform instanceof MovingPlatform) {
-                velocity.x =((MovingPlatform) currentPlatform).getVelocity();
+            if (currentPlatform instanceof HorizontalMovingPlatform) {
+                velocity.x =((HorizontalMovingPlatform) currentPlatform).getVelocity();
             } else
                 velocity.x =0;
         }
@@ -114,8 +113,13 @@ public class GaryCharacter {
             }
         }
 
-        if (onPlatform)
+        if (onPlatform) {
             velocity.y = 0;
+            if(currentPlatform instanceof  VerticalMovingPlatform && ((VerticalMovingPlatform) currentPlatform).getVelocity() > 0)
+                gary.y += ((VerticalMovingPlatform) currentPlatform).getVelocity() * delta;
+            else if(currentPlatform instanceof  VerticalMovingPlatform && ((VerticalMovingPlatform) currentPlatform).getVelocity() < 0 && gary.y > 0)
+                gary.y += ((VerticalMovingPlatform) currentPlatform).getVelocity() * delta;
+        }
 
         if (gary.y > 0 && (!onPlatform) && !flight) {
             velocity.y += Constants.GRAVITY * (delta);
