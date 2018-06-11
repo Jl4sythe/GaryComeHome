@@ -32,6 +32,11 @@ public class LevelFourScreen extends GameScreen implements Screen {
             super.addPlatform(new VerticalMovingPlatform(Constants.WORLD_WIDTH - 310, Constants.WORLD_HEIGHT,300, 10, -150));
             timer =0;
         }
+
+        for (int i = 0; i < GameScreen.getPlatforms().size() ; i++) {
+            if((GameScreen.getPlatforms().get(i).getRectangle().y > Constants.WORLD_HEIGHT)|| GameScreen.getPlatforms().get(i).getRectangle().y < -10)
+                GameScreen.getPlatforms().remove(i);
+        }
     }
 
 

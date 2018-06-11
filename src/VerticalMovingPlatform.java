@@ -16,4 +16,10 @@ public class VerticalMovingPlatform extends Platform{
         super.updateY(velocity * delta);
         super.update(batch, delta);
     }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+
 }
