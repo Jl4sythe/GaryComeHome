@@ -1,5 +1,6 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,6 +17,7 @@ public class EnemyCharacter {
     private Texture cross;
     private GaryGame game;
     private BitmapFont font;
+    private Music oof;
 
     private Texture garyTexR;
     private Texture garyTexL;
@@ -44,6 +46,8 @@ public class EnemyCharacter {
         garyTexL = new Texture(Gdx.files.internal("assets/enemyLeft.png"));
         patTexR = new Texture(Gdx.files.internal("assets/patrickRight.png"));
         patTexL = new Texture(Gdx.files.internal("assets/patrickRight.png"));
+
+        oof = Gdx.audio.newMusic(Gdx.files.internal("assets/OOF.mp3"));
 
         enemy = new Rectangle();
         enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
@@ -169,6 +173,7 @@ public class EnemyCharacter {
 
         for (int i = 0; i < GameScreen.lasers.size(); i++) {
             if (enemy.overlaps(GameScreen.lasers.get(i).getRectangle())) {
+                oof.play();
                 health--;
                 loss = 60;
                 GameScreen.lasers.remove(i);

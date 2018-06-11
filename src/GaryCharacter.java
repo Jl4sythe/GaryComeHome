@@ -1,5 +1,6 @@
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,6 +17,7 @@ public class GaryCharacter {
     private Texture cross;
     private GaryGame game;
     private BitmapFont font;
+    private Music oof;
 
     private Texture garyTexR;
     private Texture garyTexL;
@@ -40,6 +42,8 @@ public class GaryCharacter {
         this.velocity = new Vector2(0, 0);
         garyTexR = new Texture(Gdx.files.internal("assets/garyRight.png"));
         garyTexL = new Texture(Gdx.files.internal("assets/garyLeft.png"));
+
+        oof = Gdx.audio.newMusic(Gdx.files.internal("assets/OOF.mp3"));
 
         gary = new Rectangle();
         gary.x = 0;
@@ -158,6 +162,7 @@ public class GaryCharacter {
             if (gary.overlaps(GameScreen.lasers.get(i).getRectangle())) {
                 health--;
                 loss = 60;
+                oof.play();
                 GameScreen.lasers.remove(i);
                 i--;
                 knockBack = true;
