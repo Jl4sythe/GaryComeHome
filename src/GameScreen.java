@@ -37,14 +37,15 @@ public class GameScreen implements Screen
     }
 
     public void show() {
+        gary = new GaryCharacter(game);
+        enemy = new EnemyCharacter(game);
+
         batch = new SpriteBatch();
         camera = new OrthographicCamera();
         viewport = new FitViewport(Constants.WORLD_WIDTH, Constants.WORLD_HEIGHT, camera);
         font = new BitmapFont();
         renderer = new ShapeRenderer();
 
-        gary = new GaryCharacter(game);
-        enemy = new EnemyCharacter(game);
         lasers = new ArrayList<Laser>();
         power = new PowerUps(game);
 
@@ -119,4 +120,8 @@ public class GameScreen implements Screen
         batch.dispose();
 
     }
+
+    public GaryCharacter getGary(){return gary;}
+
+    public EnemyCharacter getEnemy(){return enemy;}
 }

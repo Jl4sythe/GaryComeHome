@@ -11,6 +11,8 @@ public class LevelFiveScreen extends GameScreen implements Screen {
         super.addPlatform(new VerticalMovingPlatform(Constants.WORLD_WIDTH/2 - 500, 0, 300, 10, 200));
         super.addPlatform(new VerticalMovingPlatform(Constants.WORLD_WIDTH/2 + 200, 0, 300, 10, 200));
         super.addPlatform(new VerticalMovingPlatform(Constants.WORLD_WIDTH/2 - 150, Constants.WORLD_HEIGHT-10, 300, 10, -200));
+        super.addPlatform(new ImpassablePlatform(0,0,Constants.WORLD_WIDTH, 10));
+
     }
 
     @Override
@@ -22,7 +24,7 @@ public class LevelFiveScreen extends GameScreen implements Screen {
     public void render(float delta) {
         super.render(delta);
         for (int i = 0; i < GameScreen.getPlatforms().size(); i++) {
-            if(GameScreen.getPlatforms().get(i).getRectangle().y > Constants.WORLD_HEIGHT-10 || GameScreen.getPlatforms().get(i).getRectangle().y <= 0) {
+            if(GameScreen.getPlatforms().get(i).getRectangle().y > Constants.WORLD_HEIGHT-10 || GameScreen.getPlatforms().get(i).getRectangle().y <= 0 && GameScreen.getPlatforms().get(i) instanceof VerticalMovingPlatform) {
                 ((VerticalMovingPlatform) GameScreen.getPlatforms().get(i)).setVelocity(-((VerticalMovingPlatform) GameScreen.getPlatforms().get(i)).getVelocity());
                 GameScreen.getPlatforms().get(i).updateY(((VerticalMovingPlatform) GameScreen.getPlatforms().get(i)).getVelocity() * delta);
             }

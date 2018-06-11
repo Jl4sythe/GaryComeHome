@@ -9,6 +9,8 @@ public class LevelThreeScreen extends GameScreen implements Screen {
         super.setBackground(new Texture(Gdx.files.internal("assets/LevelThreeBackground.png")));
         super.addPlatform(new HorizontalMovingPlatform(1, Constants.WORLD_HEIGHT/3 - 30, 300, 10, 200));
         super.addPlatform(new HorizontalMovingPlatform(Constants.WORLD_WIDTH-300,2 *Constants.WORLD_HEIGHT/3 - 30, 300, 10, -200));
+        super.addPlatform(new ImpassablePlatform(0,0,Constants.WORLD_WIDTH, 10));
+
     }
 
     @Override

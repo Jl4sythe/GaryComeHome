@@ -10,6 +10,7 @@ public class LevelOneScreen extends GameScreen implements Screen {
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 500, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 + 200, Constants.WORLD_HEIGHT/3 - 30, 300, 10));
         super.addPlatform(new Platform(Constants.WORLD_WIDTH/2 - 150, 2 * Constants.WORLD_HEIGHT/3 - 30, 300, 10));
+        super.addPlatform(new ImpassablePlatform(0,0,Constants.WORLD_WIDTH, 10));
     }
 
     @Override

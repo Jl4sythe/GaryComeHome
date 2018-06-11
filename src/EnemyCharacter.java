@@ -51,7 +51,7 @@ public class EnemyCharacter {
 
         enemy = new Rectangle();
         enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
-        enemy.y = 0;
+        enemy.y = 15;
         enemy.width = Constants.GARY_WIDTH;
         enemy.height = Constants.GARY_HEIGHT;
 
@@ -115,16 +115,16 @@ public class EnemyCharacter {
         else if (enemy.x + Constants.GARY_WIDTH > Constants.WORLD_WIDTH)
             velocity.x = -200;
 
-
         enemy.x += velocity.x * (delta);
         enemy.y += velocity.y * (delta);
 
         currentPlatform = null;
         for(Platform p: GameScreen.getPlatforms()) {
-            if (velocity.y <= 0 && enemy.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+            if (velocity.y <= 0 && enemy.overlaps(p.getRectangle())) {
                 //gary.y -= velocity.y * (delta);
-                onPlatform = true;
                 currentPlatform = p;
+                if(!Gdx.input.isKeyPressed(Input.Keys.DOWN) || (currentPlatform instanceof ImpassablePlatform))
+                    onPlatform = true;
             }
         }
 
@@ -145,9 +145,6 @@ public class EnemyCharacter {
         }else if(flight && Gdx.input.isKeyPressed(Input.Keys.DOWN) && enemy.y > 0) {
             velocity.y = -Constants.GARY_SPEED;
         }else if(flight){
-            velocity.y = 0;
-        } else{
-            enemy.y = 0;
             velocity.y = 0;
         }
 
@@ -170,6 +167,12 @@ public class EnemyCharacter {
             health--;
         if(Gdx.input.isKeyJustPressed(Input.Keys.G))
             health++;
+        if(enemy.y < -Constants.GARY_HEIGHT){
+            health--;
+            enemy.x = Constants.WORLD_WIDTH - Constants.GARY_WIDTH;
+            enemy.y = Constants.WORLD_HEIGHT;
+            velocity.y = 0;
+        }
 
         for (int i = 0; i < GameScreen.lasers.size(); i++) {
             if (enemy.overlaps(GameScreen.lasers.get(i).getRectangle())) {
@@ -219,10 +222,10 @@ public class EnemyCharacter {
     public void shoot(SpriteBatch batch) {
         if (coolDown == 0) {
             if (facingRight) {
-                GameScreen.lasers.add(new Laser(facingRight, enemy.x + enemy.width + 1, enemy.y + enemy.height - 15, batch));
+                GameScreen.lasers.add(new Laser(facingRight, enemy.x + enemy.width + 5, enemy.y + enemy.height - 15, batch));
                 coolDown = (int) (60 * var);
             } else {
-                GameScreen.lasers.add(new Laser(facingRight, enemy.x - Constants.LASER_WIDTH, enemy.y + enemy.height - 15, batch));
+                GameScreen.lasers.add(new Laser(facingRight, enemy.x - Constants.LASER_WIDTH - 5, enemy.y + enemy.height - 15, batch));
                 coolDown = (int) (60 * var);
             }
         }

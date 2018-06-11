@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.concurrent.ConcurrentNavigableMap;
+
 public class GaryCharacter {
     private Vector2 velocity;
     private ShapeRenderer renderer;
@@ -47,7 +49,7 @@ public class GaryCharacter {
 
         gary = new Rectangle();
         gary.x = 0;
-        gary.y = 0;
+        gary.y = 15;
         gary.width = Constants.GARY_WIDTH;
         gary.height = Constants.GARY_HEIGHT;
 
@@ -110,10 +112,11 @@ public class GaryCharacter {
 
         currentPlatform = null;
         for (Platform p : GameScreen.getPlatforms()) {
-            if (velocity.y <= 0 && gary.overlaps(p.getRectangle()) && !Gdx.input.isKeyPressed(Input.Keys.S)) {
+            if (velocity.y <= 0 && gary.overlaps(p.getRectangle())) {
                 //gary.y -= velocity.y * (delta);
-                onPlatform = true;
                 currentPlatform = p;
+                if(!Gdx.input.isKeyPressed(Input.Keys.S) || (currentPlatform instanceof ImpassablePlatform))
+                    onPlatform = true;
             }
         }
 
@@ -135,9 +138,6 @@ public class GaryCharacter {
             velocity.y = -Constants.GARY_SPEED;
         } else if (flight) {
             velocity.y = 0;
-        } else {
-            gary.y = 0;
-            velocity.y = 0;
         }
 
         if (coolDown > 0) {
@@ -157,6 +157,12 @@ public class GaryCharacter {
             health--;
         if (Gdx.input.isKeyJustPressed(Input.Keys.G))
             health++;
+        if(gary.y < -Constants.GARY_HEIGHT) {
+            health--;
+            gary.x = 0;
+            gary.y = Constants.WORLD_HEIGHT;
+            velocity.y = 0;
+        }
 
         for (int i = 0; i < GameScreen.lasers.size(); i++) {
             if (gary.overlaps(GameScreen.lasers.get(i).getRectangle())) {
@@ -205,10 +211,10 @@ public class GaryCharacter {
     public void shoot(SpriteBatch batch) {
         if (coolDown == 0) {
             if (facingRight) {
-                GameScreen.lasers.add(new Laser(true, gary.x + gary.width + 1, gary.y + gary.height - 15, batch));
+                GameScreen.lasers.add(new Laser(true, gary.x + gary.width + 5, gary.y + gary.height - 15, batch));
                 coolDown = (int) (60 * var);
             } else {
-                GameScreen.lasers.add(new Laser(false, gary.x - Constants.LASER_WIDTH, gary.y + gary.height - 15, batch));
+                GameScreen.lasers.add(new Laser(false, gary.x - Constants.LASER_WIDTH - 5, gary.y + gary.height - 15, batch));
                 coolDown = (int) (60 * var);
             }
         }

@@ -7,6 +7,8 @@ public class LevelTwoScreen extends GameScreen implements Screen {
     public LevelTwoScreen(GaryGame game){
         super(game);
         super.setBackground(new Texture(Gdx.files.internal("assets/LevelTwoBackground.png")));
+        super.addPlatform(new ImpassablePlatform(0,0,Constants.WORLD_WIDTH, 10));
+
     }
 
     @Override
