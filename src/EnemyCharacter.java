@@ -137,7 +137,7 @@ public class EnemyCharacter {
         }
 
         if (enemy.y > 0 && !onPlatform && !flight) {
-            if(Gdx.input.isKeyPressed(Input.Keys.S))
+            if(Gdx.input.isKeyPressed(Input.Keys.DOWN))
                 velocity.y += 2 * Constants.GRAVITY * delta;
             else
                 velocity.y += Constants.GRAVITY * (delta);
